@@ -21,7 +21,7 @@ jobs:
           working_directory: source
           args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode -outdir=..
 
-      - name: Verifica la presenza del file e spostalo nella cartella principale
+      - name: Verifica la presenza e correttezza del file
         run: |
           set -xe
           file 'Documento di progetto.pdf' | grep -q 'PDF'
