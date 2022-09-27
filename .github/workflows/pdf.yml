@@ -17,14 +17,14 @@ jobs:
       - name: Compila il documento LaTeX
         uses: xu-cheng/latex-action@v2
         with:
-          root_file: "Documento di progetto.tex"
+          root_file: 'Documento di progetto.tex'
           working_directory: source
-          args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode
+          args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode -outdir=..
 
       - name: Verifica la presenza del file e spostalo nella cartella principale
         run: |
-          file 'source/Documento di progetto.pdf' | grep -q ' PDF '
-          mv 'source/Documento di progetto.pdf' .
+          set -xe
+          file 'Documento di progetto.pdf' | grep -q 'PDF'
 
       - name: Carica il file aggiornato sulla repository
         run: |
