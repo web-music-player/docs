@@ -8,27 +8,25 @@ jobs:
   update:
     runs-on: ubuntu-latest
     steps:
+      - name: Configura repository corrente
+        uses: actions/checkout@v2
 
-    - name: Configura repository corrente
-      uses: actions/checkout@v2
-
-    - name: Compila il documento LaTeX
-      uses: xu-cheng/latex-action@v2
-      with:
+      - name: Compila il documento LaTeX
+        uses: xu-cheng/latex-action@v2
+        with:
           root_file: "Documento di progetto.tex"
           working_directory: source
-
           args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode
 
-    - name: Verifica la presenza del file e spostalo nella cartella principale
-      run: |
-        file 'source/Documento di progetto.pdf' | grep -q ' PDF '
-        mv 'source/Documento di progetto.pdf' .
+      - name: Verifica la presenza del file e spostalo nella cartella principale
+        run: |
+          file 'source/Documento di progetto.pdf' | grep -q ' PDF '
+          mv 'source/Documento di progetto.pdf' .
 
-    - name: Carica il file aggiornato sulla repository
-      run: |
-        git config --global user.name "silvanusbordignon"
-        git config --global user.email "silvanusbordignon@gmail.com"
-        git add "Documento di progetto.pdf"
-        git commit -m "Workflow: Aggiorna il file PDF"
-        git push
+      - name: Carica il file aggiornato sulla repository
+        run: |
+          git config --global user.name "silvanusbordignon"
+          git config --global user.email "silvanusbordignon@gmail.com"
+          git add "Documento di progetto.pdf"
+          git commit -m "Workflow: Aggiorna il file PDF"
+          git push
