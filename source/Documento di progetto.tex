@@ -12,8 +12,11 @@
 \usepackage{hyperref}
 \hypersetup{hidelinks}
 
-\usepackage[margin=2cm]{geometry}
+\usepackage[margin=2.5cm]{geometry}
 \usepackage{minipage-marginpar}
+\usepackage{fancyhdr}
+\usepackage[bottom]{footmisc}
+\usepackage{lastpage}
 
 \usepackage{enumitem}
 
@@ -22,29 +25,71 @@
 \setlength{\parindent}{0em}
 \setlength{\parskip}{1em}
 
+\fancyhead[L]{\leftmark}
+\fancyhead[R]{\shortstack[r]{Versione documento: 0.01 \\ Gruppo: T27}}
+
+\fancyfoot[C]{}
+\fancyfoot[R]{\thepage/\pageref{LastPage}}
+
+\renewcommand{\headrulewidth}{2pt}
+\renewcommand{\headruleskip}{3pt}
+\setlength{\headheight}{30pt}
+
+\renewcommand{\footrulewidth}{2pt}
+
 \setlist[itemize]{itemsep=0.25em,topsep=0pt}
-\setlist[enumerate]{itemsep=0.25em,topsep=0pt}
+\setlist[enumerate]{itemsep=0.75em,topsep=0pt,align=left}
 
 %%%%%%%%%%%%%%%%%%%%
 %%%%  DOCUMENT  %%%%
 %%%%%%%%%%%%%%%%%%%%
 
 \title{Web Music Player}
-\author{3 uomini e una $\lambda$}
+\author{Gruppo T27}
 
 \begin{document}
 
-\maketitle
-\newpage
+\pagestyle{empty}
 
+\begin{center}
+
+    \vspace{2 cm}
+
+    \begin{tabular*}{\textwidth}{ c @{\extracolsep{\fill}} c }
+        \includegraphics[width=0.3\textwidth]{marchio_unitrento.pdf} & \shortstack{\Large{Dipartimento di Ingegneria} \\ \Large{e Scienza dell'Informazione}}
+    \end{tabular*}
+
+    \vspace{2 cm} 
+  
+    \LARGE{Ingegneria del software\\}
+  
+    \vspace{1.5 cm} 
+    \Large\textsc{Documento di progetto\\} 
+    \Large\textsc{Versione: 0.01\\} 
+    \vspace{2 cm} 
+    \Huge\textsc{Web Music Player\\}
+    \Large{\it{Gruppo T27}}
+  
+    \vspace{2 cm} 
+  
+    \Large{Anno accademico 2022/2023}
+\end{center}
+
+\newpage
 \tableofcontents
-\newpage
 
+\pagestyle{fancy}
+
+\newpage
 \section{Scopo del documento}
 
 Il presente documento riporta l’analisi dei requisiti di sistema del progetto Web Music Player in linguaggio naturale. Lo scopo di questo di questo documento è quello di:
 \begin{itemize}
-    \item descrivere gli obiettivi del progetto
+    \item descrivere gli obiettivi del progetto;
+    \item elencare i requisiti funzionali;
+    \item elencare i requisiti non funzionali;
+    \item presentare il front-end del progetto;
+    \item descrivere il back-end del progetto.
 \end{itemize}
 
 \section{Obiettivi del progetto}
@@ -54,17 +99,186 @@ Il progetto ha come obiettivo la realizzazione di una piattaforma online per l�
 Nello specifico, il servizio deve essere in grado di:
 
 \begin{itemize}
-    \item dare la possibilità ad un nuovo utente di registrarsi al suo primo accesso al sito web. Per la registrazione sono necessari un indirizzo email e una password. Una volta registrato l’utente può usufruire di una prova gratuita di 30 giorni prima di sottoscrivere un abbonamento  mensile. Un utente già registrato deve avere la possibilità di effettuare l’accesso tramite le sue credenziali;
-    \item un utente dev’essere in grado di ricercare, ascoltare e riprodurre musica in streaming. Ha la possibilità di aggiungere alla Libreria canzoni, album e creare nuove playlist;
-    \item presentare un’interfaccia web costituita da due schermate distinte, una barra superiore ed una barra inferiore. La schermata principale consiste nella Libreria dell’utente, ovvero dalle playlist create e da brani ed album salvati. La seconda è la schermata Scopri, il punto d’incontro tra utente e applicazione dove verrà proposta nuova musica. La barra superiore permette di passare da una schermata all’altra e di ricercare una canzone. La barra inferiore contiene le informazioni sul brano in riproduzione, permettendo di mettere in pausa, di passare alla canzone successiva e di modificare il volume;
-    \item suggerire nuova musica sulla base dei gusti dell’utente. Questi vengono determinati dalle canzoni ascoltate, dai loro generi, dalle playlist create e dagli album salvati. L’utente deve essere in grado di interagire con le proposte, approvando i nuovi suggerimenti o rifiutandoli. In entrambi i casi, le decisioni vengono prese in considerazione per le future proposte.
+    \item dare la possibilità ad un nuovo utente di registrarsi al suo primo accesso al sito web. Per la registrazione sono necessari un indirizzo email e una password. Un utente già registrato deve avere la possibilità di effettuare l’accesso tramite le sue credenziali;
+    \item permettere a chi produce musica di registrarsi come creator. Questi utenti possono caricare la propria musica sulla piattaforma attraverso una schermata apposita nel loro profilo. Possono essere caricate gruppi di canzoni racchiuse in album, mixtape, EP;
+    \item un utente dev’essere in grado di cercare, ascoltare e riprodurre musica in streaming. Ha la possibilità di aggiungere alla Libreria canzoni, album e creare nuove playlist;
+    \item suggerire nuova musica sulla base dei gusti dell’utente. Questi vengono determinati dalle canzoni ascoltate, dai loro tag, dalle playlist create e dagli album salvati. L’utente deve essere in grado di interagire con le proposte, approvando i nuovi suggerimenti o rifiutandoli. In entrambi i casi, le decisioni vengono prese in considerazione per le future proposte.
 \end{itemize}
 
-\begin{figure}
-    \centering
-    \includegraphics[width=\textwidth]{mock-up.jpg}
-    \label{fig:mock-up}
-    \caption{Mock-up}
-\end{figure}
+\newpage
+\section{Requisiti funzionali}
+
+Presentiamo ora i requisiti funzionali del sistema: le funzionalità offerte dal nostro servizio.
+
+\begin{enumerate}[label=\textbf{RF\arabic*}\;, ref=\textbf{RF\arabic*}]
+    \item \label{itm:rf1} \textbf{Registrazione}
+    
+    Il software deve presentare una schermata di registrazione agli utenti che visitano per la prima volta il sito. Sono presenti due modalità di registrazione: utente standard e utente creator. Per registrarsi, in entrambe le modalità, sono necessari il nome, il cognome, un indirizzo email valido ed una password sicura (vedi \ref{itm:rnf2a}). Per completare la fase di registrazione l'indirizzo email dev'essere verificato (vedi \ref{itm:rnf2b}). Una volta fatto ciò, si passa alla fase di pagamento.
+    \item \label{itm:rf2} \textbf{Pagamento}
+    
+    Una volta completata la registrazione, il software deve portare una schermata per il pagamento (vedi \ref{itm:rnf7}). Gli utenti potranno pagare secondo due modalità: pagamento con la carta di credito o tramite PayPal. Una volta confermato il pagamento, si potrà accedere al servizio tramite login.
+    \item \label{itm:rf3} \textbf{Login}
+    
+    Il software deve fornire una schermata di login nella quale gli utenti registrati possono inserire email e password per accedere.
+    \item \label{itm:rf4} \textbf{Recupero password}
+    
+    Il software offre la possibilità di recuperare la password tramite un one-time link inviato all’indirizzo email associato all’account.
+    \item \label{itm:rf5} \textbf{Ricerca}
+    
+    Gli utenti possono cercare releases\footnote{Release: contenuto musicale caricato da un creator; ciò include singoli, album, EP, mixtapes.} o playlist create tramite una barra di ricerca. Possono effettuare le ricerce attraverso i metadati dei brani.
+    \item \label{itm:rf6} \textbf{Riproduzione}
+    
+    Gli utenti possono riprodurre una release o una playlist selezionata; un brano in riproduzione può essere messo in pausa. Quando un brano viene riprodotto, vengono messi in coda\footnote{Coda: lista di canzoni riprodotte automaticamente quando quella corrente termina.} eventuali canzoni ad essa legate, ovvero le canzoni successive nel caso in cui la canzone faccia parte di una playlist o di una release, fino alla fine. Gli utenti possono passare alla canzone successiva o alla precedente tramite pulsanti appositi (sequenzialità) oppure riprodurre la coda in ordine casuale.
+    \item \label{itm:rf7} \textbf{Libreria}
+
+    Il software deve offrire una sezione chiamata Libreria per raggruppare la musica salvata dall’utente (vedi \ref{itm:rf8}) e le playlist create.
+
+    \item \label{itm:rf8} \textbf{Musica che ti piace}
+    
+    Il software deve permettere all’utente di salvare releases nella libreria in una zona “Musica che ti piace”.
+    \item \label{itm:rf9} \textbf{Playlist}
+    
+    Il software deve permettere all’utente di creare e gestire (spostare, rimuovere) le proprie playlist nella Libreria.
+    \item \label{itm:rf10} \textbf{Consigliati}
+    
+    Il software deve suggerire all’utente altre releases basandosi principalmente sugli ascolti passati. L’utente deve poter dare un’opinione del brano consigliato dal sistema.
+    \item \label{itm:rf11} \textbf{Brani}
+    
+    Ciascuna release è caratterizzata da un titolo, da uno o più creator e da zero o più tag (vedi \ref{itm:rnf8}).
+    \item \label{itm:rf12} \textbf{Cronologia}
+    
+    Il software deve mostrare release e playlist ascoltate in ordine cronologico inverso (dal più recente al meno recente), fino a un massimo di 30 brani.
+    \item \label{itm:rf13} \textbf{Impostazioni}
+    
+    Dalla schermata principale sarà possibile aprire la schermata impostazioni. Sono disponibili le seguenti opzioni:
+    \begin{enumerate}[label=\textbf{\alph*}, ref=\textbf{RF13\alph*}, itemsep=0.5em]
+        \item \label{itm:rf13a} effettuare il logout;
+        \item \label{itm:rf13b} disdire l’abbonamento; viene chiesto di confermare la scelta. Se l’utente conferma, il servizio sarà disponibile fino al termine del mese per il quale ha pagato;
+        \item \label{itm:rf13c} cambiare la password; 
+        \item \label{itm:rf13d} scegliere tra le lingue disponibili.   
+    \end{enumerate}
+    \item \label{itm:rf14} \textbf{Account creator}
+    
+    Gli account creator possono usufruire di tutti i servizi dell’account standard. Possono inoltre accedere ad una schermata “La mia musica” dove possono caricare le proprie releases. La schermata presenta due elenchi: i singoli caricati e gli album caricati. Possono modificare il titolo e i tag delle proprie release. Gli utenti standard possono visualizzare il profilo dell’artista per vedere tutte le sue releases.
+    \item \label{itm:rf15} \textbf{Carimento releases}
+    
+    La schermata “La mia musica” presenta un bottone per caricare nuove release sulla piattaforma. Una volta cliccato il creator dovrà scegliere se caricare una release e selezionare uno o più file dal suo dispositivo. Avviene il caricamento sulla piattaforma, dove sarà visualizzata nell’apposito elenco, quindi dei singoli o degli album.
+\end{enumerate}
+
+\newpage
+\section{Requisiti non funzionali}
+
+Presentiamo i requisiti non funzionali del sistema: le proprietà globali del nostro servizio.
+
+\begin{enumerate}[label=\textbf{RNF\arabic*}\;, ref=\textbf{RNF\arabic*}]
+    \item \label{itm:rnf1} \textbf{Portabilità}
+    
+    Il servizio deve essere accessibile dai browser di computer fissi e portatili. Deve supportare i principali browser in commercio: Safari, Edge, Firefox e Chrome; supportare le versioni rilasciate entro il 2017.
+    \item \label{itm:rnf2} \textbf{Security}
+    
+    \begin{enumerate}[label=\textbf{\alph*}, ref=\textbf{RNF2\alph*}, itemsep=0.5em]
+        \item \label{itm:rnf2a} per password “sicura” si intende: almeno 8 caratteri, almeno una lettera maiuscola e minuscola, almeno un numero, almeno un carattere speciale (\%\&\#!@*\^\,);
+        \item \label{itm:rnf2b} alla registrazione il software invia una mail all’indirizzo inserito dall’utente contenente un link da cliccare. Una volta cliccato il link, la mail viene validata e l’account è registrato. Questo per garantire che l’indirizzo email esista ed appartenga all’utente;
+        \item \label{itm:rnf2c} utilizzo del protocollo https per una connessione cifrata;
+        \item \label{itm:rnf2d} quanto più streaming di risorse protette da diritto di copyright possibile dev’essere protetto attraverso un sistema DRM per la protezione di tali diritti, in modo da evitare per quanto possibile la diffusione non autorizzata delle suddette risorse.
+    \end{enumerate}
+
+    \item \label{itm:rnf3} \textbf{Affidabilità}
+    
+    L’infrastruttura è ridondata per garantire la protezione dal fallimento di dischi. Il servizio deve eseguire un backup dei dati mensilmente. Questi backup sono salvati su un servizio esterno, in modo da assicurare la conservazione dei dati in caso di guasti all’infrastruttura o di attacco hacker.
+    \item \label{itm:rnf4} \textbf{Usabilità}
+    
+    L’applicazione deve risultare familiare per un target di giovani e giovani adulti di età compresa tra i 16 e 35 anni, previa esperienza nell’utilizzo di un contemporaneo dispositivo digitale (dal 2015 in poi).
+    \item \label{itm:rnf5} \textbf{Privacy}
+    
+    Conforme alle norme esposte nel GDPR.
+    \item \label{itm:rnf6} \textbf{Performance}
+    
+    \begin{enumerate}[label=\textbf{\alph*}, ref=\textbf{RNF6\alph*}, itemsep=0.5em]
+        \item \label{itm:rnf6a} lo streaming deve adattarsi alla banda disponibile all’utente in quel momento, diminuendo o aumentando la qualità, in base allo stato della rete;
+        \item \label{itm:rnf6b} la ricerca nella barra di ricerca deve restituire risultati entro 10 secondi con una media di 3 secondi.
+    \end{enumerate}
+
+    \item \label{itm:rnf7} \textbf{Pagamento}
+    
+    L’abbonamento viene fatturato mensilmente.
+    \item \label{itm:rnf8} \textbf{Tag}
+    
+    I tag che vengono assegnati automaticamente alle releases provengono dall’autore e da servizi esterni (last.fm, musicbrainz).
+\end{enumerate}
+
+\section{Front-end}
+
+Descriviamo il software dal punto di vista dell'interfaccia.
+
+\begin{enumerate}[label=\textbf{FE\arabic*}\;, ref=\textbf{FE\arabic*}]
+    \item \label{itm:fe1} \textbf{Schermata registrazione}
+    
+    L'interfaccia presenta dei campi testuali per inserire email, password e conferma password. Presenta due bottoni per scegliere il tipo di account e un bottone per registrarsi.
+    \item \label{itm:fe2} \textbf{Schermata pagamento}
+    
+    L'interfaccia presenta due bottoni per scegliere il metodo di pagamento: uno per le carte di credito, uno per PayPal.
+    \item \label{itm:fe3} \textbf{Schermata login}
+    
+    L'interfaccia presenta dei campi testuali per inserire email e password. Presenta una scritta cliccabile per recuperare la password ed un bottone per effettuare l'accesso. È inoltre presente una scritta cliccabile per passare alla pagina della registrazione.
+    \item \label{itm:fe4} \textbf{Schermate recupero password}
+    
+    Vedi \ref{itm:rf4}. La prima schermata presenta una componente testuale per inserire la mail alla quale inviare il link. La seconda schermata presenta due aree testuali per inserire e confermare la nuova password.
+    \item \label{itm:fe5} \textbf{Schermata principale: barra superiore}
+    
+    Composta da: logo a sinistra, barra di ricerca (\ref{itm:rf4}) al centro e il bottone per le impostazioni a destra. 
+    \item \label{itm:fe6} \textbf{Schermata principale: scheda a sinistra}
+    
+    Schermata che suggerisce i brani (\ref{itm:rf9}): titolo della scheda seguito da una lista di brani. Ogni brano presenta a lato due pulsanti: una X per dire che il brano non è stato apprezzato e un cuore per indicare che gli piace.
+    \item \label{itm:fe7} \textbf{Schermata principale: scheda centrale}
+    
+    Leggermente più grande delle altre. Schermata libreria (\ref{itm:rf6}). Al suo interno sono presenti 2 sottosezioni: la prima presenta la musica che ti piace (\ref{itm:rf7}), la seconda playlist create (\ref{itm:rf8}). Cliccando sul titolo di una delle sottosezioni la tab libreria verrà sostituita da questa sottosezione. Nella nuova vista troviamo in alto a sinistra un bottone per tornare indietro, seguito dal titolo della sottosezione. Sotto, l’elenco delle releases salvate o delle playlist. Cliccare sul nome di una playlist o una release che non sia un singolo aprirà sulla tab centrale una vista di quella playlist/album/ep/mixtape, con in alto un bottone per tornare indietro e il titolo, subito sotto l'elenco dei brani.
+    \item \label{itm:fe8} \textbf{Schermata principale: scheda a destra}
+    
+    La cronologia di ascolto. Vedi \ref{itm:rf11}.
+    \item \label{itm:fe9} \textbf{Schermata principale: barra inferiore}
+    
+    Presenta a sinistra titolo e l’artista della canzone che si sta ascoltando, al centro: 3 pulsanti: canzone precedente, successiva, play-pause.
+    \item \label{itm:fe10} \textbf{Schermata impostazioni}
+    
+    Elenco di opzioni nel formato “Descrizione - Bottone acceso/spento” oppure “Descrizione - Menù a tendina”. Vedi \ref{itm:rf13}.
+    \item \label{itm:fe11} \textbf{Schermata account creator}
+    
+    La schermata presenta il nome del creator in alto a destra e un bottone per tornare indietro in alto a sinistra. Al centro presenta due elenchi: i singoli caricati e gli album caricati.
+    \item \label{itm:fe12} \textbf{Creazione playlist}
+    
+    Quando un brano va aggiunto ad una playlist, appare una schermata nella quale sono elencate le playlist esistenti, e tramite pulsante si potrà creare una nuova playlist ed inserire il nome. Vedi \ref{itm:rf8}. 
+\end{enumerate}
+
+\section{Back-end}
+
+Descriviamo il software dal punto di vista dei sistemi con il quale deve interagire.
+
+\begin{enumerate}[label=\textbf{BE\arabic*}\;, ref=\textbf{BE\arabic*}]
+    \item \label{itm:be1} \textbf{Pagamenti}
+    
+    I pagamenti avvengono tramite piattaforme esterne. L'utente ha la possibilità di pagare tramite carta di credito (es: Stripe) o tramite PayPal. Vedi \ref{itm:rf2}.
+    \item \label{itm:be2} \textbf{Tag}
+    
+    I tag da associare alle releases sono ottenuti tramite API di servizi online (es: last.fm o musicbrainz). Vedi \ref{itm:rnf8}.
+    \item \label{itm:be3} \textbf{Log}
+    
+    Un server ausiliario viene usato per motitorare il servizio e la sua macchina host, in modo da poter eseguire analisi di performance e diagnosticare eventuali errori.
+    \item \label{itm:be4} \textbf{Database}
+    
+    I dati vengono salvati in un database interno.
+    \item \label{itm:be5} \textbf{Backup}
+    
+    Il software si appoggia su un servizio esterno per i backup dei dati. Vedi \ref{itm:rnf3}.
+    \item \label{itm:be6} \textbf{CDN}
+    
+    Il software sfrutta un Content Delivery Network per garantire una migliore velocità di trasmissione in tutte le parti del mondo.
+\end{enumerate}
+
+% TODO: rileggi il contenuto
+% TODO: mettere le definizioni a piè di pagina
+% TODO: intestazione
+% TODO: prima pagina
+% TODO: formato? meh
 
 \end{document}
