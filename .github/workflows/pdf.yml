@@ -28,8 +28,8 @@ jobs:
 
       - name: Carica il file aggiornato sulla repository
         run: |
-          git config --global user.name 'Workflow Action'
-          git config --global user.email 'x@x.x'
+          git config user.name 'Workflow Action'
+          git config user.email 'x@x.x'
           git add .
           git commit -m 'Ricompilato il file PDF'
           git push
