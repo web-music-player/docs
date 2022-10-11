@@ -111,58 +111,58 @@ Nello specifico, il servizio deve essere in grado di:
 Presentiamo ora i requisiti funzionali del sistema: le funzionalità offerte dal nostro servizio.
 
 \begin{enumerate}[label=\textbf{RF\arabic*}\;, ref=\textbf{RF\arabic*}]
-    \item \label{itm:rf1} \textbf{Registrazione}
+    \item \label{registrazione} \textbf{Registrazione}
     
-    Il software deve presentare una schermata di registrazione agli utenti che visitano per la prima volta il sito. Sono presenti due modalità di registrazione: utente standard e utente creator. Per registrarsi, in entrambe le modalità, sono necessari il nome, il cognome, un indirizzo email valido ed una password sicura (vedi \ref{itm:rnf2a}). Per completare la fase di registrazione l'indirizzo email dev'essere verificato (vedi \ref{itm:rnf2b}). Una volta fatto ciò, si passa alla fase di pagamento.
-    \item \label{itm:rf2} \textbf{Pagamento}
-    
-    Una volta completata la registrazione, il software deve portare una schermata per il pagamento (vedi \ref{itm:rnf7}). Gli utenti potranno pagare secondo due modalità: pagamento con la carta di credito o tramite PayPal. Una volta confermato il pagamento, si potrà accedere al servizio tramite login.
-    \item \label{itm:rf3} \textbf{Login}
+    Il software deve presentare una schermata di registrazione agli utenti che visitano per la prima volta il sito. Sono presenti due modalità di registrazione: utente standard e utente creator. Per registrarsi, in entrambe le modalità, sono necessari un indirizzo email valido ed una password sicura (vedi \ref{password sicura}). Per completare la fase di registrazione l'indirizzo email dev'essere verificato (vedi \ref{email di verifica}). Una volta fatto ciò, si passa alla fase di pagamento.
+    \item \label{pagamento} \textbf{Pagamento}
+
+    Una volta completata la registrazione, il software deve portare una schermata per il pagamento (vedi \ref{pagamento non funzionale}). Gli utenti potranno pagare secondo due modalità: pagamento con la carta di credito o tramite PayPal. Una volta confermato il pagamento, si potrà accedere al servizio tramite login.
+    \item \label{login} \textbf{Login}
     
     Il software deve fornire una schermata di login nella quale gli utenti registrati possono inserire email e password per accedere.
-    \item \label{itm:rf4} \textbf{Recupero password}
+    \item \label{recupero password} \textbf{Recupero password}
     
-    Il software offre la possibilità di recuperare la password tramite un one-time link inviato all’indirizzo email associato all’account.
-    \item \label{itm:rf5} \textbf{Ricerca}
+    Il software offre la possibilità di recuperare la password attraverso l’indirizzo email associato all’account.
+    \item \label{ricerca} \textbf{Ricerca}
     
-    Gli utenti possono cercare releases\footnote{Release: contenuto musicale caricato da un creator; ciò include singoli, album, EP, mixtapes.} o playlist create tramite una barra di ricerca. Possono effettuare le ricerce attraverso i metadati dei brani.
-    \item \label{itm:rf6} \textbf{Riproduzione}
+    Gli utenti possono cercare releases\footnote{Release: contenuto musicale caricato da un creator; ciò include singoli, album, EP, mixtapes.} o playlist create tramite una barra di ricerca. Possono effettuare le ricerche tramite i metadati dei brani. Si possono ricercare gli artisti tramite il nome.
+    \item \label{riproduzione} \textbf{Riproduzione}
     
     Gli utenti possono riprodurre una release o una playlist selezionata; un brano in riproduzione può essere messo in pausa. Quando un brano viene riprodotto, vengono messi in coda\footnote{Coda: lista di canzoni riprodotte automaticamente quando quella corrente termina.} eventuali canzoni ad essa legate, ovvero le canzoni successive nel caso in cui la canzone faccia parte di una playlist o di una release, fino alla fine. Gli utenti possono passare alla canzone successiva o alla precedente tramite pulsanti appositi (sequenzialità) oppure riprodurre la coda in ordine casuale.
-    \item \label{itm:rf7} \textbf{Libreria}
+    \item \label{libreria} \textbf{Libreria}
 
-    Il software deve offrire una sezione chiamata Libreria per raggruppare la musica salvata dall’utente (vedi \ref{itm:rf8}) e le playlist create.
+    Il software deve offrire una sezione chiamata Libreria per raggruppare la musica salvata dall’utente (vedi \ref{musica che ti piace}) e le playlist create.
 
-    \item \label{itm:rf8} \textbf{Musica che ti piace}
+    \item \label{musica che ti piace} \textbf{Musica che ti piace}
     
     Il software deve permettere all’utente di salvare releases nella libreria in una zona “Musica che ti piace”.
-    \item \label{itm:rf9} \textbf{Playlist}
+    \item \label{playlist} \textbf{Playlist}
     
     Il software deve permettere all’utente di creare e gestire (spostare, rimuovere) le proprie playlist nella Libreria.
-    \item \label{itm:rf10} \textbf{Consigliati}
+    \item \label{consigliati} \textbf{Consigliati}
     
     Il software deve suggerire all’utente altre releases basandosi principalmente sugli ascolti passati. L’utente deve poter dare un’opinione del brano consigliato dal sistema.
-    \item \label{itm:rf11} \textbf{Brani}
+    \item \label{brani} \textbf{Brani}
     
-    Ciascuna release è caratterizzata da un titolo, da uno o più creator e da zero o più tag (vedi \ref{itm:rnf8}).
-    \item \label{itm:rf12} \textbf{Cronologia}
+    Ciascuna release è caratterizzata da un titolo, da uno o più creator e da zero o più tag (vedi \ref{tag}).
+    \item \label{cronologia} \textbf{Cronologia}
     
     Il software deve mostrare release e playlist ascoltate in ordine cronologico inverso (dal più recente al meno recente), fino a un massimo di 30 brani.
-    \item \label{itm:rf13} \textbf{Impostazioni}
+    \item \label{impostazioni} \textbf{Impostazioni}
     
     Dalla schermata principale sarà possibile aprire la schermata impostazioni. Sono disponibili le seguenti opzioni:
     \begin{enumerate}[label=\textbf{\alph*}, ref=\textbf{RF13\alph*}, itemsep=0.5em]
-        \item \label{itm:rf13a} effettuare il logout;
-        \item \label{itm:rf13b} disdire l’abbonamento; viene chiesto di confermare la scelta. Se l’utente conferma, il servizio sarà disponibile fino al termine del mese per il quale ha pagato;
-        \item \label{itm:rf13c} cambiare la password; 
-        \item \label{itm:rf13d} scegliere tra le lingue disponibili.   
+        \item \label{logout} effettuare il logout;
+        \item \label{disdire l'abbonamento} disdire l’abbonamento; viene chiesto di confermare la scelta. Se l’utente conferma, il servizio sarà disponibile fino al termine del mese per il quale ha pagato;
+        \item \label{cambiare password} cambiare la password; 
+        \item \label{lingue} scegliere tra le lingue disponibili.   
     \end{enumerate}
-    \item \label{itm:rf14} \textbf{Account creator}
+    \item \label{account creator} \textbf{Account creator}
     
     Gli account creator possono usufruire di tutti i servizi dell’account standard. Possono inoltre accedere ad una schermata “La mia musica” dove possono caricare le proprie releases. La schermata presenta due elenchi: i singoli caricati e gli album caricati. Possono modificare il titolo e i tag delle proprie release. Gli utenti standard possono visualizzare il profilo dell’artista per vedere tutte le sue releases.
-    \item \label{itm:rf15} \textbf{Carimento releases}
+    \item \label{caricamento release} \textbf{Carimento releases}
     
-    La schermata “La mia musica” presenta un bottone per caricare nuove release sulla piattaforma. Una volta cliccato il creator dovrà scegliere se caricare una release e selezionare uno o più file dal suo dispositivo. Avviene il caricamento sulla piattaforma, dove sarà visualizzata nell’apposito elenco, quindi dei singoli o degli album.
+    Dalla schermata “La mia musica” è possibile caricare nuove release sulla piattaforma. Il creator dovrà scegliere la release da caricare, avverrà il caricamento sulla piattaforma, dove sarà visualizzata nell’apposito elenco, quindi dei singoli o degli album.
 \end{enumerate}
 
 \newpage
@@ -171,38 +171,38 @@ Presentiamo ora i requisiti funzionali del sistema: le funzionalità offerte dal
 Presentiamo i requisiti non funzionali del sistema: le proprietà globali del nostro servizio.
 
 \begin{enumerate}[label=\textbf{RNF\arabic*}\;, ref=\textbf{RNF\arabic*}]
-    \item \label{itm:rnf1} \textbf{Portabilità}
+    \item \label{portabilità} \textbf{Portabilità}
     
     Il servizio deve essere accessibile dai browser di computer fissi e portatili. Deve supportare i principali browser in commercio: Safari, Edge, Firefox e Chrome; supportare le versioni rilasciate entro il 2017.
-    \item \label{itm:rnf2} \textbf{Security}
+    \item \label{security} \textbf{Security}
     
     \begin{enumerate}[label=\textbf{\alph*}, ref=\textbf{RNF2\alph*}, itemsep=0.5em]
-        \item \label{itm:rnf2a} per password “sicura” si intende: almeno 8 caratteri, almeno una lettera maiuscola e minuscola, almeno un numero, almeno un carattere speciale (\%\&\#!@*\^\,);
-        \item \label{itm:rnf2b} alla registrazione il software invia una mail all’indirizzo inserito dall’utente contenente un link da cliccare. Una volta cliccato il link, la mail viene validata e l’account è registrato. Questo per garantire che l’indirizzo email esista ed appartenga all’utente;
-        \item \label{itm:rnf2c} utilizzo del protocollo https per una connessione cifrata;
-        \item \label{itm:rnf2d} quanto più streaming di risorse protette da diritto di copyright possibile dev’essere protetto attraverso un sistema DRM per la protezione di tali diritti, in modo da evitare per quanto possibile la diffusione non autorizzata delle suddette risorse.
+        \item \label{password sicura} per password “sicura” si intende: lunghezza di almeno 8 caratteri, almeno una lettera maiuscola e minuscola, almeno un numero, almeno un carattere speciale (\%\&\#!@*\^\,);
+        \item \label{email di verifica} alla registrazione il software invia una mail all’indirizzo inserito dall’utente contenente un link da cliccare. Una volta cliccato il link, la mail viene validata e l’account è registrato. Questo per garantire che l’indirizzo email esista ed appartenga all’utente;
+        \item \label{protocollo https} utilizzo del protocollo https per una connessione cifrata;
+        \item \label{DRM} quanto più streaming di risorse protette da diritto di copyright possibile dev’essere protetto attraverso un sistema DRM per la protezione di tali diritti, in modo da evitare per quanto possibile la diffusione non autorizzata delle suddette risorse.
     \end{enumerate}
 
-    \item \label{itm:rnf3} \textbf{Affidabilità}
+    \item \label{affidabilità} \textbf{Affidabilità}
     
     L’infrastruttura è ridondata per garantire la protezione dal fallimento di dischi. Il servizio deve eseguire un backup dei dati mensilmente. Questi backup sono salvati su un servizio esterno, in modo da assicurare la conservazione dei dati in caso di guasti all’infrastruttura o di attacco hacker.
-    \item \label{itm:rnf4} \textbf{Usabilità}
+    \item \label{usabilità} \textbf{Usabilità}
     
     L’applicazione deve risultare familiare per un target di giovani e giovani adulti di età compresa tra i 16 e 35 anni, previa esperienza nell’utilizzo di un contemporaneo dispositivo digitale (dal 2015 in poi).
-    \item \label{itm:rnf5} \textbf{Privacy}
+    \item \label{privacy} \textbf{Privacy}
     
     Conforme alle norme esposte nel GDPR.
-    \item \label{itm:rnf6} \textbf{Performance}
+    \item \label{performance} \textbf{Performance}
     
     \begin{enumerate}[label=\textbf{\alph*}, ref=\textbf{RNF6\alph*}, itemsep=0.5em]
-        \item \label{itm:rnf6a} lo streaming deve adattarsi alla banda disponibile all’utente in quel momento, diminuendo o aumentando la qualità, in base allo stato della rete;
-        \item \label{itm:rnf6b} la ricerca nella barra di ricerca deve restituire risultati entro 10 secondi con una media di 3 secondi.
+        \item \label{qualità streaming} lo streaming deve adattarsi alla banda disponibile all’utente in quel momento, diminuendo o aumentando la qualità, in base allo stato della rete;
+        \item \label{velocità ricerca} la ricerca nella barra di ricerca deve restituire risultati entro 10 secondi con una media di 3 secondi.
     \end{enumerate}
 
-    \item \label{itm:rnf7} \textbf{Pagamento}
+    \item \label{pagamento non funzionale} \textbf{Pagamento}
     
     L’abbonamento viene fatturato mensilmente.
-    \item \label{itm:rnf8} \textbf{Tag}
+    \item \label{tag} \textbf{Tag}
     
     I tag che vengono assegnati automaticamente alle releases provengono dall’autore e da servizi esterni (last.fm, musicbrainz).
 \end{enumerate}
@@ -212,7 +212,7 @@ Presentiamo i requisiti non funzionali del sistema: le proprietà globali del no
 Descriviamo il software dal punto di vista dell'interfaccia.
 
 \begin{enumerate}[label=\textbf{FE\arabic*}\;, ref=\textbf{FE\arabic*}]
-    \item \label{itm:fe1} \textbf{Schermata registrazione}
+    \item \label{schermata registrazione} \textbf{Schermata registrazione}
     
     L'interfaccia presenta dei campi testuali per inserire email, password e conferma password. Presenta due bottoni per scegliere il tipo di account e un bottone per registrarsi.
 
@@ -223,10 +223,10 @@ Descriviamo il software dal punto di vista dell'interfaccia.
         \label{fig:schermata_registrazione}
     \end{figure}
 
-    \item \label{itm:fe2} \textbf{Schermata pagamento}
+    \item \label{schermata pagamento} \textbf{Schermata pagamento}
     
     L'interfaccia presenta due bottoni per scegliere il metodo di pagamento: uno per le carte di credito, uno per PayPal.
-    \item \label{itm:fe3} \textbf{Schermata login}
+    \item \label{schermata login} \textbf{Schermata login}
     
     L'interfaccia presenta dei campi testuali per inserire email e password. Presenta una scritta cliccabile per recuperare la password ed un bottone per effettuare l'accesso. È inoltre presente una scritta cliccabile per passare alla pagina della registrazione.
 
@@ -237,22 +237,22 @@ Descriviamo il software dal punto di vista dell'interfaccia.
         \label{fig:schermata_login}
     \end{figure}
 
-    \item \label{itm:fe4} \textbf{Schermate recupero password}
+    \item \label{schermata recupero password} \textbf{Schermate recupero password}
     
-    Vedi \ref{itm:rf4}. La prima schermata presenta una componente testuale per inserire la mail alla quale inviare il link. La seconda schermata presenta due aree testuali per inserire e confermare la nuova password.
-    \item \label{itm:fe5} \textbf{Schermata principale: barra superiore}
+    Vedi \ref{recupero password}. La prima schermata presenta una componente testuale per inserire la mail alla quale inviare il link. La seconda schermata presenta due aree testuali per inserire e confermare la nuova password.
+    \item \label{barra superiore} \textbf{Schermata principale: barra superiore}
     
-    Composta da: logo a sinistra, barra di ricerca (\ref{itm:rf4}) al centro e il bottone per le impostazioni a destra. 
-    \item \label{itm:fe6} \textbf{Schermata principale: scheda a sinistra}
+    Composta da: logo a sinistra, barra di ricerca (\ref{ricerca}) al centro e il bottone per le impostazioni a destra. 
+    \item \label{scheda a sinistra} \textbf{Schermata principale: scheda a sinistra}
     
-    Schermata che suggerisce i brani (\ref{itm:rf9}): titolo della scheda seguito da una lista di brani. Ogni brano presenta a lato due pulsanti: una X per dire che il brano non è stato apprezzato e un cuore per indicare che gli piace.
-    \item \label{itm:fe7} \textbf{Schermata principale: scheda centrale}
+    Schermata che suggerisce i brani (\ref{consigliati}): titolo della scheda seguito da una lista di brani. Ogni brano presenta a lato due pulsanti: una X per dire che il brano non è stato apprezzato e un cuore per indicare che gli piace.
+    \item \label{scheda centrale} \textbf{Schermata principale: scheda centrale}
     
-    Leggermente più grande delle altre. Schermata libreria (\ref{itm:rf6}). Al suo interno sono presenti 2 sottosezioni: la prima presenta la musica che ti piace (\ref{itm:rf7}), la seconda playlist create (\ref{itm:rf8}). Cliccando sul titolo di una delle sottosezioni la tab libreria verrà sostituita da questa sottosezione. Nella nuova vista troviamo in alto a sinistra un bottone per tornare indietro, seguito dal titolo della sottosezione. Sotto, l’elenco delle releases salvate o delle playlist. Cliccare sul nome di una playlist o una release che non sia un singolo aprirà sulla tab centrale una vista di quella playlist/album/ep/mixtape, con in alto un bottone per tornare indietro e il titolo, subito sotto l'elenco dei brani.
-    \item \label{itm:fe8} \textbf{Schermata principale: scheda a destra}
+    Leggermente più grande delle altre. Schermata libreria (\ref{libreria}). Al suo interno sono presenti 2 sottosezioni: la prima presenta la musica che ti piace (\ref{musica che ti piace}), la seconda playlist create (\ref{playlist}). Cliccando sul titolo di una delle sottosezioni la tab libreria verrà sostituita da questa sottosezione. Nella nuova vista troviamo in alto a sinistra un bottone per tornare indietro, seguito dal titolo della sottosezione. Sotto, l’elenco delle releases salvate o delle playlist. Cliccare sul nome di una playlist o una release che non sia un singolo aprirà sulla tab centrale una vista di quella playlist/album/ep/mixtape, con in alto un bottone per tornare indietro e il titolo, subito sotto l'elenco dei brani.
+    \item \label{scheda a destra} \textbf{Schermata principale: scheda a destra}
     
-    La cronologia di ascolto. Vedi \ref{itm:rf11}.
-    \item \label{itm:fe9} \textbf{Schermata principale: barra inferiore}
+    La cronologia di ascolto. Vedi \ref{brani}.
+    \item \label{barra inferiore} \textbf{Schermata principale: barra inferiore}
     
     Presenta a sinistra titolo e l’artista della canzone che si sta ascoltando, al centro: 3 pulsanti: canzone precedente, successiva, play-pause.
 
@@ -263,10 +263,10 @@ Descriviamo il software dal punto di vista dell'interfaccia.
         \label{fig:schermata_principale}
     \end{figure}
 
-    \item \label{itm:fe10} \textbf{Schermata impostazioni}
+    \item \label{schermata impostazioni} \textbf{Schermata impostazioni}
     
-    Elenco di opzioni nel formato “Descrizione - Bottone acceso/spento” oppure “Descrizione - Menù a tendina”. Vedi \ref{itm:rf13}.
-    \item \label{itm:fe11} \textbf{Schermata account creator}
+    Elenco di opzioni nel formato “Descrizione - Bottone acceso/spento” oppure “Descrizione - Menù a tendina”. Vedi \ref{impostazioni}.
+    \item \label{schermata account creator} \textbf{Schermata account creator}
     
     La schermata presenta il nome del creator in alto a destra e un bottone per tornare indietro in alto a sinistra. Al centro presenta due elenchi: i singoli caricati e gli album caricati.
 
@@ -277,9 +277,9 @@ Descriviamo il software dal punto di vista dell'interfaccia.
         \label{fig:schermata_creator}
     \end{figure}
 
-    \item \label{itm:fe12} \textbf{Creazione playlist}
+    \item \label{creazione playlist} \textbf{Creazione playlist}
     
-    Quando un brano va aggiunto ad una playlist, appare una schermata nella quale sono elencate le playlist esistenti, e tramite pulsante si potrà creare una nuova playlist ed inserire il nome. Vedi \ref{itm:rf8}. 
+    Quando un brano va aggiunto ad una playlist, appare una schermata nella quale sono elencate le playlist esistenti, e tramite pulsante si potrà creare una nuova playlist ed inserire il nome. Vedi \ref{playlist}. 
 \end{enumerate}
 
 \section{Back-end}
@@ -287,22 +287,22 @@ Descriviamo il software dal punto di vista dell'interfaccia.
 Descriviamo il software dal punto di vista dei sistemi con il quale deve interagire.
 
 \begin{enumerate}[label=\textbf{BE\arabic*}\;, ref=\textbf{BE\arabic*}]
-    \item \label{itm:be1} \textbf{Pagamenti}
+    \item \label{pagamenti} \textbf{Pagamenti}
     
-    I pagamenti avvengono tramite piattaforme esterne. L'utente ha la possibilità di pagare tramite carta di credito (es: Stripe) o tramite PayPal. Vedi \ref{itm:rf2}.
-    \item \label{itm:be2} \textbf{Tag}
+    I pagamenti avvengono tramite piattaforme esterne. L'utente ha la possibilità di pagare tramite carta di credito (es: Stripe) o tramite PayPal. Vedi \ref{pagamenti}.
+    \item \label{tag backend} \textbf{Tag}
     
-    I tag da associare alle releases sono ottenuti tramite API di servizi online (es: last.fm o musicbrainz). Vedi \ref{itm:rnf8}.
-    \item \label{itm:be3} \textbf{Log}
+    I tag da associare alle releases sono ottenuti tramite API di servizi online (es: last.fm o musicbrainz). Vedi \ref{tag}.
+    \item \label{log} \textbf{Log}
     
     Un server ausiliario viene usato per motitorare il servizio e la sua macchina host, in modo da poter eseguire analisi di performance e diagnosticare eventuali errori.
-    \item \label{itm:be4} \textbf{Database}
+    \item \label{database} \textbf{Database}
     
     I dati vengono salvati in un database interno.
-    \item \label{itm:be5} \textbf{Backup}
+    \item \label{backup} \textbf{Backup}
     
-    Il software si appoggia su un servizio esterno per i backup dei dati. Vedi \ref{itm:rnf3}.
-    \item \label{itm:be6} \textbf{CDN}
+    Il software si appoggia su un servizio esterno per i backup dei dati. Vedi \ref{affidabilità}.
+    \item \label{CDN} \textbf{CDN}
     
     Il software sfrutta un Content Delivery Network per garantire una migliore velocità di trasmissione in tutte le parti del mondo.
 \end{enumerate}
