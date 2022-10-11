@@ -26,7 +26,7 @@
 \setlength{\parskip}{1em}
 
 \fancyhead[L]{\leftmark}
-\fancyhead[R]{\shortstack[r]{Versione documento: 0.01 \\ Gruppo: T27}}
+\fancyhead[R]{\shortstack[r]{Versione documento: 0.02 \\ Gruppo: T27}}
 
 \fancyfoot[C]{}
 \fancyfoot[R]{\thepage/\pageref{LastPage}}
@@ -65,7 +65,7 @@
   
     \vspace{1.5 cm} 
     \Large\textsc{Documento di progetto\\} 
-    \Large\textsc{Versione: 0.01\\} 
+    \Large\textsc{Versione: 0.02\\} 
     \vspace{2 cm} 
     \Huge\textsc{Web Music Player\\}
     \Large{\it{Gruppo T27}}
@@ -120,15 +120,15 @@ Presentiamo ora i requisiti funzionali del sistema: le funzionalità offerte dal
     \item \label{login} \textbf{Login}
     
     Il software deve fornire una schermata di login nella quale gli utenti registrati possono inserire email e password per accedere.
-    \item \label{recupero password} \textbf{Recupero password}
-    
-    Il software offre la possibilità di recuperare la password attraverso l’indirizzo email associato all’account.
     \item \label{ricerca} \textbf{Ricerca}
     
     Gli utenti possono cercare releases\footnote{Release: contenuto musicale caricato da un creator; ciò include singoli, album, EP, mixtapes.} o playlist create tramite una barra di ricerca. Possono effettuare le ricerche tramite i metadati dei brani. Si possono ricercare gli artisti tramite il nome.
     \item \label{riproduzione} \textbf{Riproduzione}
     
-    Gli utenti possono riprodurre una release o una playlist selezionata; un brano in riproduzione può essere messo in pausa. Quando un brano viene riprodotto, vengono messi in coda\footnote{Coda: lista di canzoni riprodotte automaticamente quando quella corrente termina.} eventuali canzoni ad essa legate, ovvero le canzoni successive nel caso in cui la canzone faccia parte di una playlist o di una release, fino alla fine. Gli utenti possono passare alla canzone successiva o alla precedente tramite pulsanti appositi (sequenzialità) oppure riprodurre la coda in ordine casuale.
+    Gli utenti possono riprodurre una release o una playlist selezionata; un brano in riproduzione può essere messo in pausa.
+    \item \label{coda} \textbf{Coda}
+
+    Quando un brano viene riprodotto, vengono messi in coda\footnote{Coda: lista di canzoni riprodotte automaticamente quando quella corrente termina.} eventuali canzoni ad essa legate, ovvero le canzoni successive nel caso in cui la canzone faccia parte di una playlist o di una release, fino alla fine. Gli utenti possono passare alla canzone successiva o alla precedente tramite pulsanti appositi (sequenzialità) oppure riprodurre la coda in ordine casuale.
     \item \label{libreria} \textbf{Libreria}
 
     Il software deve offrire una sezione chiamata Libreria per raggruppare la musica salvata dall’utente (vedi \ref{musica che ti piace}) e le playlist create.
@@ -141,7 +141,10 @@ Presentiamo ora i requisiti funzionali del sistema: le funzionalità offerte dal
     Il software deve permettere all’utente di creare e gestire (spostare, rimuovere) le proprie playlist nella Libreria.
     \item \label{consigliati} \textbf{Consigliati}
     
-    Il software deve suggerire all’utente altre releases basandosi principalmente sugli ascolti passati. L’utente deve poter dare un’opinione del brano consigliato dal sistema.
+    Il software deve suggerire all’utente altre releases basandosi principalmente sugli ascolti passati, sui tag di quel brani, sulle playlist create e sugli album salvati.
+    \item \label{feedback} \textbf{Feedback}
+    
+    L’utente deve poter dare un’opinione del brano consigliato dal sistema.
     \item \label{brani} \textbf{Brani}
     
     Ciascuna release è caratterizzata da un titolo, da uno o più creator e da zero o più tag (vedi \ref{tag}).
@@ -150,19 +153,19 @@ Presentiamo ora i requisiti funzionali del sistema: le funzionalità offerte dal
     Il software deve mostrare release e playlist ascoltate in ordine cronologico inverso (dal più recente al meno recente), fino a un massimo di 30 brani.
     \item \label{impostazioni} \textbf{Impostazioni}
     
-    Dalla schermata principale sarà possibile aprire la schermata impostazioni. Sono disponibili le seguenti opzioni:
-    \begin{enumerate}[label=\textbf{\alph*}, ref=\textbf{RF13\alph*}, itemsep=0.5em]
-        \item \label{logout} effettuare il logout;
-        \item \label{disdire l'abbonamento} disdire l’abbonamento; viene chiesto di confermare la scelta. Se l’utente conferma, il servizio sarà disponibile fino al termine del mese per il quale ha pagato;
-        \item \label{cambiare password} cambiare la password; 
-        \item \label{lingue} scegliere tra le lingue disponibili.   
-    \end{enumerate}
+    Dalla schermata principale sarà possibile aprire la schermata impostazioni. Da qui sarà possibile effettuare il logout, disdire l'abbonamento (vedi \ref{disdire l'abbonamento}), cambiare la password (vedi \ref{cambiare password}) o scegliere tra le lingue disponibili.
+    \item \label{disdire l'abbonamento} \textbf{Disdire l'abbonamento}
+    
+    L'utente può disdire l'abbonamento corrente. Viene chiesto di confermare la scelta e se l’utente conferma, il servizio sarà disponibile fino al termine del mese per il quale ha pagato.
     \item \label{account creator} \textbf{Account creator}
     
-    Gli account creator possono usufruire di tutti i servizi dell’account standard. Possono inoltre accedere ad una schermata “La mia musica” dove possono caricare le proprie releases. La schermata presenta due elenchi: i singoli caricati e gli album caricati. Possono modificare il titolo e i tag delle proprie release. Gli utenti standard possono visualizzare il profilo dell’artista per vedere tutte le sue releases.
+    Gli account creator possono usufruire di tutti i servizi dell’account standard. Possono inoltre accedere ad una schermata “La mia musica” dove possono caricare le proprie releases. La schermata presenta due elenchi: i singoli caricati e gli album caricati. Possono modificare il titolo e i tag delle proprie release.
     \item \label{caricamento release} \textbf{Carimento releases}
     
     Dalla schermata “La mia musica” è possibile caricare nuove release sulla piattaforma. Il creator dovrà scegliere la release da caricare, avverrà il caricamento sulla piattaforma, dove sarà visualizzata nell’apposito elenco, quindi dei singoli o degli album.
+    \item \label{visualizzare account creator} \textbf{Visualizzare account creator}
+    
+    Gli utenti standard possono visualizzare il profilo dell’artista per vedere tutte le sue releases.
 \end{enumerate}
 
 \newpage
@@ -182,7 +185,12 @@ Presentiamo i requisiti non funzionali del sistema: le proprietà globali del no
         \item \label{protocollo https} utilizzo del protocollo https per una connessione cifrata;
         \item \label{DRM} quanto più streaming di risorse protette da diritto di copyright possibile dev’essere protetto attraverso un sistema DRM per la protezione di tali diritti, in modo da evitare per quanto possibile la diffusione non autorizzata delle suddette risorse.
     \end{enumerate}
-
+    \item \label{recupero password} \textbf{Recupero password}
+    
+    Il software offre la possibilità di recuperare la password attraverso l’indirizzo email associato all’account.
+    \item \label{cambiare password} \textbf{Cambiare la password}
+    
+    L'utente ha la possibilità di cambiare la password associata al suo account.
     \item \label{affidabilità} \textbf{Affidabilità}
     
     L’infrastruttura è ridondata per garantire la protezione dal fallimento di dischi. Il servizio deve eseguire un backup dei dati mensilmente. Questi backup sono salvati su un servizio esterno, in modo da assicurare la conservazione dei dati in caso di guasti all’infrastruttura o di attacco hacker.
@@ -251,7 +259,7 @@ Descriviamo il software dal punto di vista dell'interfaccia.
     Leggermente più grande delle altre. Schermata libreria (\ref{libreria}). Al suo interno sono presenti 2 sottosezioni: la prima presenta la musica che ti piace (\ref{musica che ti piace}), la seconda playlist create (\ref{playlist}). Cliccando sul titolo di una delle sottosezioni la tab libreria verrà sostituita da questa sottosezione. Nella nuova vista troviamo in alto a sinistra un bottone per tornare indietro, seguito dal titolo della sottosezione. Sotto, l’elenco delle releases salvate o delle playlist. Cliccare sul nome di una playlist o una release che non sia un singolo aprirà sulla tab centrale una vista di quella playlist/album/ep/mixtape, con in alto un bottone per tornare indietro e il titolo, subito sotto l'elenco dei brani.
     \item \label{scheda a destra} \textbf{Schermata principale: scheda a destra}
     
-    La cronologia di ascolto. Vedi \ref{brani}.
+    La cronologia di ascolto. Vedi \ref{cronologia}.
     \item \label{barra inferiore} \textbf{Schermata principale: barra inferiore}
     
     Presenta a sinistra titolo e l’artista della canzone che si sta ascoltando, al centro: 3 pulsanti: canzone precedente, successiva, play-pause.
@@ -305,6 +313,9 @@ Descriviamo il software dal punto di vista dei sistemi con il quale deve interag
     \item \label{CDN} \textbf{CDN}
     
     Il software sfrutta un Content Delivery Network per garantire una migliore velocità di trasmissione in tutte le parti del mondo.
+    \item \label{backend email di verifica} \textbf{Email di verifica}
+    
+    Il software sfrutta un servizio esterno per l'invio delle email di verifica agli utenti, al momento della registrazione (vedi \ref{email di verifica}).
 \end{enumerate}
 
 \end{document}
