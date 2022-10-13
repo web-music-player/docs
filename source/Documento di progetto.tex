@@ -26,7 +26,7 @@
 \setlength{\parskip}{1em}
 
 \fancyhead[L]{\leftmark}
-\fancyhead[R]{\shortstack[r]{Versione documento: 0.02 \\ Gruppo: T27}}
+\fancyhead[R]{\shortstack[r]{Versione documento: 0.03 \\ Gruppo: T27}}
 
 \fancyfoot[C]{}
 \fancyfoot[R]{\thepage/\pageref{LastPage}}
@@ -65,7 +65,7 @@
   
     \vspace{1.5 cm} 
     \Large\textsc{Documento di progetto\\} 
-    \Large\textsc{Versione: 0.02\\} 
+    \Large\textsc{Versione: 0.03\\} 
     \vspace{2 cm} 
     \Huge\textsc{Web Music Player\\}
     \Large{\it{Gruppo T27}}
@@ -120,6 +120,9 @@ Presentiamo ora i requisiti funzionali del sistema: le funzionalità offerte dal
     \item \label{login} \textbf{Login}
     
     Il software deve fornire una schermata di login nella quale gli utenti registrati possono inserire email e password per accedere.
+    \item \label{recupero password} \textbf{Recupero password}
+
+    Dalla schermata di accesso è possibile accedere tramite testo cliccabile al recupero password (vedi \ref{recupero password nf}).
     \item \label{ricerca} \textbf{Ricerca}
     
     Gli utenti possono cercare releases\footnote{Release: contenuto musicale caricato da un creator; ciò include singoli, album, EP, mixtapes.} o playlist create tramite una barra di ricerca. Possono effettuare le ricerche tramite i metadati dei brani. Si possono ricercare gli artisti tramite il nome.
@@ -185,7 +188,7 @@ Presentiamo i requisiti non funzionali del sistema: le proprietà globali del no
         \item \label{protocollo https} utilizzo del protocollo https per una connessione cifrata;
         \item \label{DRM} quanto più streaming di risorse protette da diritto di copyright possibile dev’essere protetto attraverso un sistema DRM per la protezione di tali diritti, in modo da evitare per quanto possibile la diffusione non autorizzata delle suddette risorse.
     \end{enumerate}
-    \item \label{recupero password} \textbf{Recupero password}
+    \item \label{recupero password nf} \textbf{Recupero password}
     
     Il software offre la possibilità di recuperare la password attraverso l’indirizzo email associato all’account.
     \item \label{cambiare password} \textbf{Cambiare la password}
@@ -247,7 +250,7 @@ Descriviamo il software dal punto di vista dell'interfaccia.
 
     \item \label{schermata recupero password} \textbf{Schermate recupero password}
     
-    Vedi \ref{recupero password}. La prima schermata presenta una componente testuale per inserire la mail alla quale inviare il link. La seconda schermata presenta due aree testuali per inserire e confermare la nuova password.
+    Vedi \ref{recupero password nf}. La prima schermata presenta una componente testuale per inserire la mail alla quale inviare il link. La seconda schermata presenta due aree testuali per inserire e confermare la nuova password.
     \item \label{barra superiore} \textbf{Schermata principale: barra superiore}
     
     Composta da: logo a sinistra, barra di ricerca (\ref{ricerca}) al centro e il bottone per le impostazioni a destra. 
@@ -306,7 +309,7 @@ Descriviamo il software dal punto di vista dei sistemi con il quale deve interag
     Un server ausiliario viene usato per motitorare il servizio e la sua macchina host, in modo da poter eseguire analisi di performance e diagnosticare eventuali errori.
     \item \label{database} \textbf{Database}
     
-    I dati vengono salvati in un database interno.
+    I dati vengono salvati in un database esterno.
     \item \label{backup} \textbf{Backup}
     
     Il software si appoggia su un servizio esterno per i backup dei dati. Vedi \ref{affidabilità}.
@@ -316,6 +319,9 @@ Descriviamo il software dal punto di vista dei sistemi con il quale deve interag
     \item \label{backend email di verifica} \textbf{Email di verifica}
     
     Il software sfrutta un servizio esterno per l'invio delle email di verifica agli utenti, al momento della registrazione (vedi \ref{email di verifica}).
+    \item \label{upload releases} \textbf{Upload releases}
+    
+    La selezione delle release da caricare dal sistema dell'utente è gestito dal browser dal quale si accede al servizio.
 \end{enumerate}
 
 \end{document}
