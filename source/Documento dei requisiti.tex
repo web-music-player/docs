@@ -1,0 +1,108 @@
+\documentclass[a4paper,12pt]{article}
+
+%%%%%%%%%%%%%%%%%%%%
+%%%%  PREAMBLE  %%%%
+%%%%%%%%%%%%%%%%%%%%
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+\usepackage[english,italian]{babel}
+
+\usepackage{hyperref}
+\hypersetup{hidelinks}
+
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{minipage-marginpar}
+\usepackage{fancyhdr}
+\usepackage[bottom]{footmisc}
+\usepackage{lastpage}
+
+\usepackage{enumitem}
+
+\usepackage{graphicx}
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+\fancyhead[L]{\leftmark}
+\fancyhead[R]{\shortstack[r]{Versione documento: 0.01 \\ Gruppo: T27}}
+
+\fancyfoot[C]{}
+\fancyfoot[R]{\thepage/\pageref{LastPage}}
+
+\renewcommand{\headrulewidth}{2pt}
+\renewcommand{\headruleskip}{3pt}
+\setlength{\headheight}{30pt}
+
+\renewcommand{\footrulewidth}{2pt}
+
+\setlist[itemize]{itemsep=0.25em,topsep=0pt}
+\setlist[enumerate]{itemsep=0.75em,topsep=0pt,align=left}
+
+%%%%%%%%%%%%%%%%%%%%
+%%%%  DOCUMENT  %%%%
+%%%%%%%%%%%%%%%%%%%%
+
+\title{Web Music Player}
+\author{Gruppo T27}
+
+\begin{document}
+
+\pagestyle{empty}
+
+\begin{center}
+
+    \vspace{2 cm}
+
+    \begin{tabular*}{\textwidth}{ c @{\extracolsep{\fill}} c }
+        \includegraphics[width=0.3\textwidth]{marchio_unitrento.pdf} & \shortstack{\Large{Dipartimento di Ingegneria} \\ \Large{e Scienza dell'Informazione}}
+    \end{tabular*}
+
+    \vspace{2 cm} 
+  
+    \LARGE{Ingegneria del software\\}
+  
+    \vspace{1.5 cm} 
+    \Large\textsc{Documento dei requisiti\\} 
+    \Large\textsc{Versione: 0.01\\} 
+    \vspace{2 cm} 
+    \Huge\textsc{Web Music Player\\}
+    \Large{\it{Gruppo T27}}
+  
+    \vspace{2 cm} 
+  
+    \Large{Anno accademico 2022/2023}
+\end{center}
+
+\newpage
+\tableofcontents
+
+\pagestyle{fancy}
+
+\newpage
+\section{Scopo del documento}
+
+Il presente documento riporta l’analisi dei requisiti di sistema del progetto Web Music Player. Lo scopo di questo di questo documento è quello di:
+\begin{itemize}
+    \item descrivere gli obiettivi funzionali;
+    \item elencare i requisiti non funzionali;
+    \item mostrare le interazioni del progetti con altri sistemi;
+    \item mostrare le componenti interne del sistema.
+\end{itemize}
+
+\newpage
+\section{Requisiti funzionali}
+
+\newpage
+\section{Requisiti non funzionali}
+
+% TODO: INTRODUZIONE
+
+\newpage
+\section{Diagramma di contesto}
+
+\newpage
+\section{Diagramma delle componenti}
+
+\end{document}
