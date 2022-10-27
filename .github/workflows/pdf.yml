@@ -14,22 +14,34 @@ jobs:
       - name: Configura repository corrente
         uses: actions/checkout@v2
 
-      - name: Compila il documento LaTeX
+      - name: Compila il documento D1 (LaTeX)
         uses: xu-cheng/latex-action@v2
         with:
           root_file: 'Documento di progetto.tex'
           working_directory: source
           args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode -outdir=..
 
-      - name: Verifica la presenza e correttezza del file
+      - name: Verifica la presenza e correttezza del D1
         run: |
           set -xe
           file 'Documento di progetto.pdf' | grep -q 'PDF'
 
-      - name: Carica il file aggiornato sulla repository
+      - name: Compila il documento D2 (LaTeX)
+        uses: xu-cheng/latex-action@v2
+        with:
+          root_file: 'Documento dei requisiti.tex'
+          working_directory: source
+          args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode -outdir=..
+
+      - name: Verifica la presenza e correttezza del D2
+        run: |
+          set -xe
+          file 'Documento dei requisiti.pdf' | grep -q 'PDF'
+
+      - name: Carica i file aggiornati sulla repository
         run: |
           git config user.name 'Workflow Action'
           git config user.email 'x@x.x'
           git add .
-          git commit -m 'Ricompilato il file PDF'
+          git commit -m 'Ricompilati i file PDF'
           git push
