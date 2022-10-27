@@ -113,7 +113,7 @@ Presentiamo ora i requisiti funzionali del sistema: le funzionalità offerte dal
 \begin{enumerate}[label=\textbf{RF\arabic*}\;, ref=\textbf{RF\arabic*}]
     \item \label{registrazione} \textbf{Registrazione}
     
-    Il software deve presentare una schermata di registrazione agli utenti che visitano per la prima volta il sito. Sono presenti due modalità di registrazione: utente standard e utente creator. Per registrarsi, in entrambe le modalità, sono necessari un indirizzo email valido ed una password sicura (vedi \ref{password sicura}). Per completare la fase di registrazione l'indirizzo email dev'essere verificato (vedi \ref{email di verifica}). Una volta fatto ciò, si passa alla fase di pagamento.
+    Il software deve presentare una schermata di registrazione agli utenti che visitano per la prima volta il sito. Sono presenti due modalità di registrazione: utente standard e utente creator. Per registrarsi, in entrambe le modalità, sono necessari un indirizzo email valido ed una password sicura (vedi \ref{password sicura}). Per completare la fase di registrazione l'indirizzo email non deve essere associato ad un account esistente, e dev'essere verificato (vedi \ref{email di verifica}). Una volta fatto ciò, si passa alla fase di pagamento.
     \item \label{pagamento} \textbf{Pagamento}
 
     Una volta completata la registrazione, il software deve portare una schermata per il pagamento (vedi \ref{pagamento non funzionale}). Gli utenti potranno pagare secondo due modalità: pagamento con la carta di credito o tramite PayPal. Una volta confermato il pagamento, si potrà accedere al servizio tramite login.
@@ -148,9 +148,6 @@ Presentiamo ora i requisiti funzionali del sistema: le funzionalità offerte dal
     \item \label{feedback} \textbf{Feedback}
     
     L’utente deve poter dare un’opinione del brano consigliato dal sistema.
-    \item \label{brani} \textbf{Brani}
-    
-    Ciascuna release è caratterizzata da un titolo, da uno o più creator e da zero o più tag (vedi \ref{tag}).
     \item \label{cronologia} \textbf{Cronologia}
     
     Il software deve mostrare release e playlist ascoltate in ordine cronologico inverso (dal più recente al meno recente), fino a un massimo di 30 brani.
