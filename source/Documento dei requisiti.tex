@@ -169,7 +169,7 @@ Per descrivere questo use-case, facciamo uso di un diagramma delle attività:
 \textbf{Descrizione:} l’utente deve poter ricercare tra releases e le proprie playlists. \newline
 \textbf{Passi:}
 \begin{enumerate}
-    \item L’utente inserisce nella barra di ricerca del testo
+    \item L’utente inserisce del testo nella barra di ricerca
     \item Il sistema ricerca in modo approssimato tra le releases caricate e le playlist e restituisce una lista di risultati, ordinati in base a quello più vicino alla query
 \end{enumerate}
 
@@ -179,10 +179,10 @@ Per descrivere questo use-case, facciamo uso di un diagramma delle attività:
 \textbf{Passi:}
 \begin{enumerate}
     \item L’utente preme sull’apposito pulsante per iniziare la riproduzione del brano \textbf{[extension 1]}
-    \item Il Client dialoga col sistema per iniziare lo stream
+    \item Il client dialoga col sistema per iniziare lo stream
     \item Il sistema inoltre aggiunge la playlist o release alla cronologia
 \end{enumerate}
-\textbf{[extension 1]} Se il brano si trova in una playlist e non è l’ultimo, il client si dovrà premurare di aggiungere anche i brani che vengono dopo alla coda nello stesso ordine in cui appaiono nella playlist. Altrimenti, se il brano viene riprodotto come parte di una release e non è l’ultimo, il client dovrà aggiungere alla coda i brani che succedono quello riprodotto nell’ordine corretto.
+\textbf{[extension 1]} Se il brano si trova in una playlist e non è l’ultimo, il client si dovrà premurare di aggiungere anche i brani che vengono dopo alla coda nello stesso ordine in cui appaiono nella playlist. Similmente, se il brano viene riprodotto come parte di una release e non è l’ultimo, il client dovrà aggiungere alla coda i brani che succedono quello riprodotto nell’ordine corretto.
 
 \subsubsection*{RF 7 Coda}
 
@@ -190,13 +190,13 @@ Per descrivere questo use-case, facciamo uso di un diagramma delle attività:
 \textbf{Passi:}
 \begin{enumerate}
     \item L’utente, attraverso appositi pulsanti, è in grado di riordinare, rimuovere e aggiungere brani alla coda
-    \item Il Client, unico posto dove la coda è mantenuta, deve salvare ogni modifica
+    \item Il client, unico posto dove la coda è mantenuta, deve salvare ogni modifica
     \item Una volta che la riproduzione del brano corrente è terminata, la coda va utilizzata per trovare il prossimo brano da riprodurre
 \end{enumerate}
 
 \subsubsection*{RF 8 Libreria}
 
-\textbf{Descrizione:} l’utente deve poter vedere le proprie playlists e la musica che ha salvat.
+\textbf{Descrizione:} l’utente deve poter vedere le proprie playlists e la musica che ha salvato.
 
 \subsubsection*{RF 9 Musica che ti piace}
 
@@ -263,10 +263,10 @@ Per descrivere questo use-case, facciamo uso di un diagramma delle attività:
 \textbf{Descrizione:} l’utente può disconnettersi dalla piattaforma. \newline
 \textbf{Passi:}
 \begin{enumerate}
-    \item l’utente si reca alla pagina delle impostazioni
-    \item l’utente preme un pulsante per terminare l’abbonamento alla piattaforma
-    \item l’utente potrà usufruire del servizio fino al termine del mese per il quale ha pagato
-    \item una volta terminato quel periodo, dopo l’accesso alla piattaforma l’utente sarà portato alla pagina del pagamento
+    \item L’utente si reca alla pagina delle impostazioni
+    \item L’utente preme un pulsante per terminare l’abbonamento alla piattaforma
+    \item L’utente potrà usufruire del servizio fino al termine del mese per il quale ha pagato
+    \item Una volta terminato quel periodo, dopo l’accesso alla piattaforma l’utente sarà portato alla pagina del pagamento
 \end{enumerate}
 
 \subsubsection*{RF 17 Cambio lingua}
@@ -274,11 +274,10 @@ Per descrivere questo use-case, facciamo uso di un diagramma delle attività:
 \textbf{Descrizione:}  l’utente può cambiare la lingua della piattaforma. \newline
 \textbf{Passi:}
 \begin{enumerate}
-    \item l’utente si reca alla pagina delle impostazioni
-    \item l’utente tramite un menù a tendina può scegliere la lingua di visualizzazione della piattaforma
-    \item il servizio si adatta, modificando i vari campi testuali per riflettere la lingua selezionata dall’utente
+    \item L'utente si reca alla pagina delle impostazioni
+    \item L’utente tramite un menù a tendina può scegliere la lingua di visualizzazione della piattaforma
+    \item Il servizio si adatta, modificando i vari campi testuali per riflettere la lingua selezionata dall’utente
 \end{enumerate}
-
 
 \subsection*{RF 18-19}
 
@@ -289,7 +288,7 @@ Per descrivere questo use-case, facciamo uso di un diagramma delle attività:
 
 \subsubsection*{RF 18 Account creator}
 
-\textbf{Descrizione:}  l’account creator consiste in un'estensione dell'account standard.
+\textbf{Descrizione:} l’account creator consiste in un'estensione dell'account standard.
 
 \subsubsection*{RF 19 Visualizzare account creator}
 
@@ -306,13 +305,13 @@ Per descrivere questo use-case, facciamo uso di un diagramma delle attività:
 
 \textbf{Passi:}
 \begin{enumerate}
-    \item l’utente creator sceglie di caricare una release dalla sua pagina
-    \item l’utente creator seleziona la release da caricare tramite il browser
-    \item l’utente creator sceglie il titolo da assegnare alla release \textbf{[extension 1]}
-    \item l’utente creator conferma la scelta
-    \item la release viene salvata sul database della piattaforma
+    \item L’utente creator sceglie di caricare una release dalla sua pagina
+    \item L’utente creator seleziona la release da caricare tramite il browser
+    \item L’utente creator sceglie il titolo da assegnare alla release \textbf{[extension 1]}
+    \item L’utente creator conferma la scelta
+    \item La release viene salvata sul database della piattaforma
 \end{enumerate}
-\textbf{[extension 1]} l’utente creator può aggiungere dei tag alla release caricata.
+\textbf{[extension 1]} L’utente creator può aggiungere dei tag alla release caricata.
 
 \subsection*{RF21 Modificare releases}
 
@@ -325,10 +324,10 @@ Per descrivere questo use-case, facciamo uso di un diagramma delle attività:
 
 \textbf{Passi:}
 \begin{enumerate}
-    \item l’utente creator seleziona una release dalla propria pagina
-    \item l'utente sceglie l’opzione di modifica
-    \item l'utente può da qui modificare il titolo, i tag, o entrambi
-    \item le modifiche vengono salvate nel database
+    \item L’utente creator seleziona una release dalla propria pagina
+    \item L'utente sceglie l’opzione di modifica
+    \item L'utente può da qui modificare il titolo, i tag, o entrambi
+    \item Le modifiche vengono salvate nel database
     
 \end{enumerate}
 
@@ -343,10 +342,10 @@ Per descrivere questo use-case, facciamo uso di un diagramma delle attività:
 
 \textbf{Passi:}
 \begin{enumerate}
-    \item l’utente creator seleziona una release dalla propria pagina
-    \item l'utente sceglie l’opzione di eliminazione
-    \item l'utente conferma l’eliminazione della release dalla piattaforma
-    \item la release viene rimossa dal database    
+    \item L’utente creator seleziona una release dalla propria pagina
+    \item L'utente sceglie l’opzione di eliminazione
+    \item L'utente conferma l’eliminazione della release dalla piattaforma
+    \item La release viene rimossa dal database    
 \end{enumerate}
 
 \newpage
