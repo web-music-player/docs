@@ -38,7 +38,7 @@
 \renewcommand{\footrulewidth}{2pt}
 
 \setlist[itemize]{itemsep=0.25em,topsep=0pt}
-\setlist[enumerate]{itemsep=0.75em,topsep=0pt,align=left}
+\setlist[enumerate]{itemsep=0.25em,topsep=0pt,align=left}
 
 %%%%%%%%%%%%%%%%%%%%
 %%%%  DOCUMENT  %%%%
@@ -93,6 +93,261 @@ Il presente documento riporta l’analisi dei requisiti di sistema del progetto 
 
 \newpage
 \section{Requisiti funzionali}
+
+Andiamo a descrivere nel dettaglio i requisiti funzionali del sistema. Per fare ciò, sfruttiamo gli use-case diagram, un utile strumento di visualizzazione. Ciascuno use-case diagram sarà accompagnato da una descrizione; questa può essere testuale o tramite un ulteriore diagramma.
+
+\subsection*{RF1 Registrazione}
+
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=0.75\textwidth]{diagrams/use-case-1.png}
+\end{figure}
+
+Per descrivere questo use-case, facciamo uso di un diagramma delle attività:
+
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=0.75\textwidth]{diagrams/activity-1.png}
+\end{figure}
+
+\newpage
+
+\subsection*{RF2 Pagamento}
+
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=0.75\textwidth]{diagrams/use-case-2.png}
+\end{figure}
+
+\textbf{Descrizione:} l'utente paga il servizio tramite un sistema esterno. 
+
+\vspace{1em}
+\subsection*{RF3 Login}
+
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=0.75\textwidth]{diagrams/use-case-3.png}
+\end{figure}
+
+\textbf{Descrizione:} questo use-case descrivere l’accesso al sito per un utente già registrato.
+
+\textbf{Passi:}
+\begin{enumerate}
+    \item L’utente inserisce la sua mail 
+    \item L’utente inserisce la password associata al suo account 
+    \item L’utente conferma la mail e la password inserite
+    \item Il sistema verifica la correttezza di mail e password \textbf{[exception 1]}
+    \item L’utente entra nel sito
+\end{enumerate}
+
+\textbf{[exception 1]} Nel caso in cui l’email e/o la password siano errati viene esposto un messaggio di errore: “email e/o password errati”.
+
+\newpage
+
+\subsection*{RF4 Recupero password}
+
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=0.75\textwidth]{diagrams/use-case-4.png}
+\end{figure}
+
+Per descrivere questo use-case, facciamo uso di un diagramma delle attività:
+
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=0.75\textwidth]{diagrams/activity-4.png}
+\end{figure}
+
+\subsection*{RF 5-13}
+
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=0.75\textwidth]{diagrams/use-case-5-6-7-8-9-10-11-12-13.png}
+\end{figure}
+
+\subsubsection*{RF5 Ricerca}
+\textbf{Descrizione:} l’utente deve poter ricercare tra releases e le proprie playlists. \newline
+\textbf{Passi:}
+\begin{enumerate}
+    \item L’utente inserisce nella barra di ricerca del testo
+    \item Il sistema ricerca in modo approssimato tra le releases caricate e le playlist e restituisce una lista di risultati, ordinati in base a quello più vicino alla query
+\end{enumerate}
+
+\subsubsection*{RF 6 Riproduzione}
+
+\textbf{Descrizione:} l’utente deve poter riprodurre una release o una playlist a partire da un brano e avere quelli successivi automaticamente messi nella coda di riproduzione nel corretto ordine. \newline
+\textbf{Passi:}
+\begin{enumerate}
+    \item L’utente preme sull’apposito pulsante per iniziare la riproduzione del brano \textbf{[extension 1]}
+    \item Il Client dialoga col sistema per iniziare lo stream
+    \item Il sistema inoltre aggiunge la playlist o release alla cronologia
+\end{enumerate}
+\textbf{[extension 1]} Se il brano si trova in una playlist e non è l’ultimo, il client si dovrà premurare di aggiungere anche i brani che vengono dopo alla coda nello stesso ordine in cui appaiono nella playlist. Altrimenti, se il brano viene riprodotto come parte di una release e non è l’ultimo, il client dovrà aggiungere alla coda i brani che succedono quello riprodotto nell’ordine corretto.
+
+\subsubsection*{RF 7 Coda}
+
+\textbf{Descrizione:} l’utente deve poter gestire la propria coda di riproduzione (riordinarla, rimuovervi brani e aggiungerne) e il client deve seguire la coda per sapere l’ordine in cui vanno riprodotte le canzoni. \newline
+\textbf{Passi:}
+\begin{enumerate}
+    \item L’utente, attraverso appositi pulsanti, è in grado di riordinare, rimuovere e aggiungere brani alla coda
+    \item Il Client, unico posto dove la coda è mantenuta, deve salvare ogni modifica
+    \item Una volta che la riproduzione del brano corrente è terminata, la coda va utilizzata per trovare il prossimo brano da riprodurre
+\end{enumerate}
+
+\subsubsection*{RF 8 Libreria}
+
+\textbf{Descrizione:} l’utente deve poter vedere le proprie playlists e la musica che ha salvat.
+
+\subsubsection*{RF 9 Musica che ti piace}
+
+\textbf{Descrizione:} l’utente deve poter salvare le releases che ascolta in una raccolta speciale chiamata “Musica che ti Piace” e successivamente deve essere in grado di gestire (rimuovere, riordinare o aggiungere releases) suddetta raccolta. \newline
+\textbf{Passi:}
+\begin{enumerate}
+    \item Durante la riproduzione di un brano o altri momenti, l’utente potrà, attraverso un apposito pulsante, chiedere al sistema di aggiungere una release alla raccolta “Musica che ti piace” dell’utente
+    \item Successivamente, da apposite tab, è possibile, utilizzando appositi pulsanti, dialogare col sistema per riordinare o rimuovere releases dalla raccolta
+\end{enumerate}
+
+\subsubsection*{RF 10 Playlist}
+
+\textbf{Descrizione:} l’utente deve poter salvare i brani che ascolta in raccolte chiamate playlists e successivamente deve essere in grado di gestirle (rimuovere, riordinare o aggiungere releases e rimuovere playlists). \newline
+\textbf{Passi:}
+\begin{enumerate}
+   \item Durante la riproduzione di un brano o altri momenti, l’utente potrà, attraverso un apposito pulsante, chiedere al sistema di aggiungere un brano a una delle playlists che ha già creato o in una nuova, a cui deve dare un nome
+    \item Successivamente, da apposite tab, è possibile, utilizzando appositi pulsanti, dialogare col sistema per riordinare o rimuovere le releases di una playlist o per rimuovere interamente una playlist
+\end{enumerate}
+
+\subsubsection*{RF 11 Consigliati}
+
+\textbf{Descrizione:} Il sistema suggerirà all’utente releases dal proprio database, con l'obiettivo di consigliargli brani che possano piacergli.
+
+\subsubsection*{RF 12 Feedback}
+
+\textbf{Descrizione:} l’utente deve essere in grado di poter restituire al sistema feedback riguardo i consigli, per aiutarlo nel perfezionamento di futuri consigli. \newline
+\textbf{Passi:}
+\begin{enumerate}
+   \item L’utente si vedrà arrivare dei consigli dal sistema, grazie agli appositi pulsanti sarà in grado di riprodurre la release consigliata e segnalare al sistema se questa era di suo gradimento o meno
+\end{enumerate}
+
+\subsubsection*{RF 13 Cronologia}
+
+\textbf{Descrizione:} l’utente deve poter recuperare la lista delle ultime 30 riproduzioni (siano esse releases o playlist). \newline
+\textbf{Passi:}
+\begin{enumerate}
+    \item L’utente si reca sul menù dedicato alla cronologia
+    \item Il sistema recupera la lista delle ultime 30 riproduzioni e le mostra all’utente
+\end{enumerate}
+
+\subsection*{RF 14-17}
+
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=0.75\textwidth]{diagrams/use-case-14-15-16-17.png}
+\end{figure}
+
+\subsubsection*{RF 14 Impostazioni}
+
+\textbf{Descrizione:} l’utente può accedere alla pagina delle impostazioni, dalla quale può compiere una serie di azioni relative al proprio account e alla piattaforma.
+
+\subsubsection*{RF 15 Logout}
+
+\textbf{Descrizione:} l’utente può disconnettersi dalla piattaforma. \newline
+\textbf{Passi:}
+\begin{enumerate}
+    \item L’utente si reca alla pagina delle impostazioni
+    \item L’utente preme un pulsante per effettuare la disconnessione del proprio account
+    \item L’utente viene riportato alla pagina di login
+\end{enumerate}
+
+\subsubsection*{RF 16 Disdire l'abbonamento}
+
+\textbf{Descrizione:} l’utente può disconnettersi dalla piattaforma. \newline
+\textbf{Passi:}
+\begin{enumerate}
+    \item l’utente si reca alla pagina delle impostazioni
+    \item l’utente preme un pulsante per terminare l’abbonamento alla piattaforma
+    \item l’utente potrà usufruire del servizio fino al termine del mese per il quale ha pagato
+    \item una volta terminato quel periodo, dopo l’accesso alla piattaforma l’utente sarà portato alla pagina del pagamento
+\end{enumerate}
+
+\subsubsection*{RF 17 Cambio lingua}
+
+\textbf{Descrizione:}  l’utente può cambiare la lingua della piattaforma. \newline
+\textbf{Passi:}
+\begin{enumerate}
+    \item l’utente si reca alla pagina delle impostazioni
+    \item l’utente tramite un menù a tendina può scegliere la lingua di visualizzazione della piattaforma
+    \item il servizio si adatta, modificando i vari campi testuali per riflettere la lingua selezionata dall’utente
+\end{enumerate}
+
+
+\subsection*{RF 18-19}
+
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=0.75\textwidth]{diagrams/use-case-18-19.png}
+\end{figure}
+
+\subsubsection*{RF 18 Account creator}
+
+\textbf{Descrizione:}  l’account creator consiste in un'estensione dell'account standard.
+
+\subsubsection*{RF 19 Visualizzare account creator}
+
+\textbf{Descrizione:} gli utenti creator e gli utenti standard possono visualizzare le pagine degli account creator. Qui sono presenti due elenchi: i singoli caricati e gli album caricati da quel creator.
+
+\subsection*{RF20 Caricare releases}
+
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=0.75\textwidth]{diagrams/use-case-20.png}
+\end{figure}
+
+\textbf{Descrizione:} questo use case descrive il caricamento delle releases sulla piattaforma da parte dei creator.
+
+\textbf{Passi:}
+\begin{enumerate}
+    \item l’utente creator sceglie di caricare una release dalla sua pagina
+    \item l’utente creator seleziona la release da caricare tramite il browser
+    \item l’utente creator sceglie il titolo da assegnare alla release \textbf{[extension 1]}
+    \item l’utente creator conferma la scelta
+    \item la release viene salvata sul database della piattaforma
+\end{enumerate}
+\textbf{[extension 1]} l’utente creator può aggiungere dei tag alla release caricata.
+
+\subsection*{RF21 Modificare releases}
+
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=0.75\textwidth]{diagrams/use-case-21.png}
+\end{figure}
+
+\textbf{Descrizione:} gli utenti creator possono modificare il titolo e i tag delle releases che hanno caricato sulla piattaforma. Questo dalla schermata del loro account.
+
+\textbf{Passi:}
+\begin{enumerate}
+    \item l’utente creator seleziona una release dalla propria pagina
+    \item l'utente sceglie l’opzione di modifica
+    \item l'utente può da qui modificare il titolo, i tag, o entrambi
+    \item le modifiche vengono salvate nel database
+    
+\end{enumerate}
+
+\subsection*{RF22 Eliminare releases}
+
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=0.75\textwidth]{diagrams/use-case-22.png}
+\end{figure}
+
+\textbf{Descrizione:} gli utenti creator possono cancellare dalla piattaforma releases da loro caricate. Questo dalla schermata del loro account.
+
+\textbf{Passi:}
+\begin{enumerate}
+    \item l’utente creator seleziona una release dalla propria pagina
+    \item l'utente sceglie l’opzione di eliminazione
+    \item l'utente conferma l’eliminazione della release dalla piattaforma
+    \item la release viene rimossa dal database    
+\end{enumerate}
 
 \newpage
 \section{Requisiti non funzionali}
