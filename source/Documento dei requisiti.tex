@@ -19,6 +19,7 @@
 \usepackage{lastpage}
 
 \usepackage{enumitem}
+\usepackage{tabularx}
 
 \usepackage{graphicx}
 
@@ -351,7 +352,115 @@ Per descrivere questo use-case, facciamo uso di un diagramma delle attività:
 \newpage
 \section{Requisiti non funzionali}
 
-% TODO: INTRODUZIONE
+Presentiamo i requisiti non funzionali del progetto. Ciascun requisito è accompagnato da una misura che, quando raggiunta, trasmette se il corrispondente requisito è stato raggiunto.
+
+\subsection*{Portabilità}
+
+{
+    \centering
+    \begin{tabularx}{\textwidth}{|l|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|}
+    \hline
+    Portabilità & Il servizio deve essere accessibile dai browser di computer fissi e portatili. Deve supportare i principali browser in commercio. & Le versioni dei browser Safari, Edge, Firefox, Chrome, rilasciate entro il 2017 devono supportare le funzionalità del software. \\
+    \hline
+    \end{tabularx} \par
+}
+\subsection*{Security}
+{
+    \centering
+    \begin{tabularx}{\textwidth}{|l|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|}
+    \hline
+    Password sicura & Gli utenti possono associare al proprio account solamente una password sicura. & Per essere classificata come sicura, la password deve avere una lunghezza minima di 8 caratteri, una lettera maiuscola, una lettera minuscola, un carattere speciale (\%\&\#!@*\textasciicircum). \\
+    \hline
+    Email verificata & L’indirizzo email inserito dall’utente deve essere verificato come esistente e in suo possesso. & Quando l’utente clicca il pulsante per la registrazione, una mail viene inviata all’indirizzo inserito dall’utente contenente un link da cliccare. Una volta cliccato il link, la mail viene validata. \\
+    \hline
+    Protezione della trasmissione & La trasmissione dati tra il browser dell’utente e il server web del sistema deve essere cifrata. & Deve essere usato il protocollo https. \\
+    \hline
+    Protezione diritti d'autore & Il software deve fare il possibile per prevenire la diffusione non autorizzata delle releases disponibili. & \\
+    \hline
+    \end{tabularx} \par
+}
+\subsection*{Recupero password}
+
+{
+    \centering
+    \begin{tabularx}{\textwidth}{|l|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|}
+    \hline
+    Recupero password & L’utente deve essere in grado di accedere al suo account anche nel caso in cui abbia dimenticato la password. & Nella pagina di registrazione è disponibile un bottone per recuperare la password attraverso l’indirizzo email associato all’account. \\
+    \hline
+    \end{tabularx} \par
+}
+\subsection*{Cambiare la password}
+
+{
+    \centering
+    \begin{tabularx}{\textwidth}{|l|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|}
+    \hline
+    Cambiare la password & L’utente loggato deve essere in grado di cambiare la password associata al suo account. & Dalle impostazioni dev’essere possibile inserire una nuova password per sostituire quella corrente. \\
+    \hline
+    \end{tabularx} \par
+}
+\subsection*{Affidabilità}
+
+{
+    \centering
+    \begin{tabularx}{\textwidth}{|l|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|}
+    \hline
+    Ridondanza & L’infrastruttura è ridondata per garantire la protezione dal fallimento dei dischi. & Devono essere presenti almeno due istanze del servizio, per cui la terminazione di una non intacchi la disponibilità del servizio. La perdita di servizio dev’essere automaticamente segnalata all’amministratore. \\ \hline
+    Backup & Devono essere presenti dei backup del sito in modo da recuperare i dati in caso di guasti o attacchi hacker. & I backup devono comprendere tutti i dati del sistema. Sono eseguiti mensilmente. Sono salvati su un servizio esterno. \\
+    \hline
+    \end{tabularx} \par
+}
+\subsection*{Usabilità}
+
+{
+    \centering
+    \begin{tabularx}{\textwidth}{|l|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|}
+    \hline
+    Familiarità & L’applicazione deve risultare familiare e facile da utilizzare. & Giovani adulti di età compresa tra i 16 e i 35 anni, previa esperienza di un recente dispositivo digitale (dal 2015 in poi) devono riuscire ad usufruire del servizio senza necessitare di aiuto esterno (almeno 50 utenti di test). \\
+    \hline
+    \end{tabularx} \par
+}
+\subsection*{Privacy}
+
+{
+    \centering
+    \begin{tabularx}{\textwidth}{|l|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|}
+    \hline
+    GDPR & Conforme al regolamento generale sulla protezione dei dati in sigla GDPR, ufficialmente regolamento n. 2016/679. & Il software permette la cancellazione dei dati personali che lo riguardano senza ingiustificato ritardo. Permette inoltre all’utente di ottenere la conferma che sia o meno in corso un trattamento di dati personali che lo riguardano. \\
+    \hline
+    \end{tabularx} \par
+}
+\subsection*{Performance}
+
+{
+    \centering
+    \begin{tabularx}{\textwidth}{|l|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|}
+    \hline
+    Qualità dell'audio & Lo streaming deve adattarsi alla banda disponibile all’utente. & Il servizio deve garantire lo streaming ad un minimo 160 kbps di banda e fino ad un massimo di 320 kbps. \\ \hline
+    Velocità di ricerca & La ricerca all’interno del sistema deve avvenire in un tempo accettabile. & I risultati dalla barra di ricerca vengono restituiti entro 10 secondi, con una media di 3 secondi. \\
+    \hline
+    \end{tabularx} \par
+}
+\subsection*{Pagamento}
+
+{
+    \centering
+    \begin{tabularx}{\textwidth}{|l|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|}
+    \hline
+    Pagamento & Si usufruisce al servizio sulla base di un pagamento ricorrente. & Il pagamento avviene mensilmente; il giorno corrisponde al giorno della sottoscrizione al servizio da parte dell’utente. La piattaforma sfrutta il servizio di pagamento scelto dall’utente per prelevare la quota necessaria. \\
+    \hline
+    \end{tabularx} \par
+}
+\subsection*{Tag}
+
+{
+    \centering
+    \begin{tabularx}{\textwidth}{|l|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|}
+    \hline
+    Tag & Ogni release possiede dei tag che la caratterizzano. & Ciascuna release deve essere associata ad un minimo di 3 (tre) tag. \\
+    \hline
+    \end{tabularx} \par
+}
 
 \newpage
 \section{Diagramma di contesto}
