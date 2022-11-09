@@ -481,6 +481,12 @@ Presentiamo ora un'analisi del contesto nel quale si inserirà il nostro progett
 
 \paragraph{DRM} Il Digital Rights Management system si preoccupa di proteggere i files per rendere difficile la pirateria
 
+\paragraph{CDN}: La rete che si preoccupa di diffondere il brano in diversi punti di internet in modo da servire più velocemente diversi utenti dispersi nel mondo.
+
+\paragraph{Backup}: I server che si preoccupano di hostare i backups dei server principali, in modo da mantenere un archivio storico e sostenere attacchi informatici o sopportare eventuali problemi hardware.
+
+\paragraph{Diagnosi}: I server che ricevono periodicamente i logs del sistema, per una più facile analisi di eventuali problematiche e profilazione delle performance.
+
 \newpage
 \subsection{Diagramma di contesto}
 
@@ -496,8 +502,363 @@ Dopo il contesto nel quale si inserirà il nostro sistema, andiamo ad analizzare
 
 \subsection{Analisi delle componenti}
 
+\subsubsection{Gestione Registrazione}
 
+\underline{Descrizione}: questa componente si occupa di interfacciarsi con l’utente durante la fase di registrazione, come da RF1. I dati per la registrazione verranno prelevati e inviati ad altre componenti.
+
+\underline{Interfaccia richiesta - Email e password}: questa componente richiede l'inserimento di indirizzo email e password da parte dell'utente. In particolare, la password andrà inserita due volte. All'inserimento di queste viene effettuato un rapido controllo della sintassi, per far sì che l'email possa corrispondere ad un indirizzo valido e che la password rispetti i requisiti di sicurezza (RNF2a).
+
+\underline{Interfaccia richiesta - Tipo di account}: l’utente seleziona la tipologia dell’account che intende creare. Le scelte disponibili sono Utente standard e Utente creator.
+
+\underline{Interfaccia richiesta - Conferma email}: per completare la registrazione è necessario ricevere una conferma della validitaà dell'indirizzo email. Questa informazione si ha nella forma di una conferma inviata da un'altra componente, la quale indica che l’utente in questione eè in proprietario dell'indirizzo email inserito.
+
+\underline{Interfaccia richiesta - Token utente}: viene richiesto l’identificativo per l’utente appena registrato. Una volta completata la registrazione, questo identificativo viene inviato ad un’altra componente.
+\underline{Interfacce fornita - Token utente}: una volta terminata la registrazione, questa componente fornisce l’identificativo all’interno della piattaforma dell’utente appena inserito.
+
+\underline{Interfaccia fornita - Email utente}: per la registrazione è necessario che l’indirizzo email dell’utente sia validato. Questa interfaccia fornisce l’indirizzo email ad una componente che si occupa di questa validazione.
+
+\underline{Interfaccia fornita - Dati registrazione}: questa interfaccia fornisce le informazioni raccolte durante la registrazione. Queste includono indirizzo email, password e tipo di account scelto dall’utente.
+
+\subsubsection{Gestione pagamento}
+
+\underline{Descrizione}: questa componente si occupa della gestione delle operazioni relative al pagamento della quota mensile per la piattaforma, come da RF2. Una volta ricevuti i dati dell’utente, si occuperà della scelta del servizio di pagamento e dell’effettuare il pagamento ricorrente. Quest’ultimo può essere interrotto.
+
+\underline{Interfaccia richiesta - Token utente}: la componente necessità dell’identificativo dell’utente per associare le operazioni di pagamento all’account specifico presente sulla piattaforma. 
+
+\underline{Interfaccia richiesta - Conferma pagamento}: viene richiesta al servizio di pagamento contattato una conferma dell’avvenuto pagamento.
+
+\underline{Interfaccia fornita - Richiesta pagamento}: una volta che l’utente avrà selezionato il metodo di pagamento utilizzare, questa interfaccia si occupa di contattare il servizio scelto con un identificativo dell’utente.
+
+\subsubsection{Gestione mail}
+
+\underline{Descrizione}: questa componente si occupa dell’interazione con il servizio esterno per le email con cui interagisce nostro sistema, come da RNF2b. Il servizio viene utilizzato per verificare che un utente che interagisce col sistema sia in possesso dell’indirizzo email che sceglie di inserire.
+
+\underline{Interfaccia richiesta - Email utente}: la componente richiede un indirizzo email al quale dovrà essere inviata la email di conferma.
+
+\underline{Interfaccia richiesta - Conferma email}: il servizio esterno comunica alla componente se l’utente ha cliccato il link presente nell’email inviata all’indirizzo email specificato. Questa comunicazione consiste nella conferma dell’indirizzo.
+
+\underline{Interfaccia fornita - Email utente}: la componente fornisce al servizio esterno per l’invio delle email l’indirizzo ricevuto da altre componenti, al quale dovrà essere inviata la email.
+
+\underline{Interfaccia fornita - Conferma email}: questa interfaccia fornisce ad altre componenti la conferma dell’indirizzo email ricevuto, ovvero se l’indirizzo email inserito dall’utente gli appartiene.
+
+\subsubsection{Gestione recupero password}
+
+\underline{Descrizione}: questa componente si occupa del recupero della password da parte dell’utente, come da RF4, RNF3. Viene anche usata per il cambio della password all’interno della piattaforma, come da RNF4. In entrambi i casi, viene utilizzato l’indirizzo email associato all’account per verificare l’identità dell’utente in questione. Una volta fatto ciò, viene data la possibilità di impostare una nuova password per l’account.
+
+
+\underline{Interfaccia richiesta - Email utente}: per avviare il processo di recupero password è necessario l’indirizzo email associato all’account.
+
+\underline{Interfaccia richiesta - Conferma email}: è necessario ricevere la conferma del fatto che l’utente che abbia inserito l’indirizzo ne sia effettivamente in possesso. Questa conferma è ricevuta da un’altra componente.
+
+\underline{Interfaccia richiesta - Conferma email}: viene richiesta una conferma dell’esistenza di un account con associato l’indirizzo email inserito dall’utente. Questa conferma è necessaria per continuare il processo di recupero.
+
+\underline{Interfaccia fornita - Email utente}: dopo l’inserimento dell’email da parte dell’utente, è necessario verificare che si tratti di un indirizzo effettivamente associato ad un account. Questa verifica è compiuta da un’altra componente, alla quale viene fornito l’indirizzo da questa interfaccia.
+
+\underline{Interfaccia fornita - Nuova password}: una volta terminate le verifiche sull’indirizzo email, viene inserita una nuova password da parte dell’utente, la quale dovrà essere salvata nella piattaforma. Questa operazione di salvataggio è compiuta dalla componente alla quale quest’interfaccia comunica la nuova password.
+
+\subsubsection{Gestione login}
+
+\underline{Descrizione}: questa componente si occupa di gestire l’accesso di un utente registrato alla piattaforma, come da RF3.
+
+\underline{Interfaccia richiesta - Email e password}: l’utente anonimo inserisce le proprie credenziali, email e password.
+
+\underline{Interfaccia richiesta - Token utente}: per procedere con l’accesso è necessaria una conferma dell’esistenza dell’utente all’interno della piattaforma. Se questa conferma non viene ricevuta, l’accesso viene negato.
+
+\underline{Interfaccia richiesta - Stato pagamenti}: una volta confermata l’esistenza dell’utente nel sistema, viene richiesto lo stato dei suoi pagamenti. Se l’utente registrato deve ancora procedere nel pagamento del mese in questione, viene ricondotto alla pagina per il pagamento.
+
+\underline{Interfaccia fornita - Credenziali}: le credenziali inserite dall’utente vengono fornite ad \\ un’altra componente. Questa dovrà verificare l’esistenza dell’utente sulla piattaforma.
+
+\underline{Interfaccia fornita - Token utente}: una volta verificato che l’utente che ha inserito le credenziali sia registrato nel sistema, questa interfaccia fornisce l’identificativo dell’utente ad altre componenti che lo necessitano.
+
+\subsubsection{Impostazioni}
+
+\underline{Descrizione}: questa componente consente all’utente di effettuare le seguenti operazioni: effettuare il logout (RF15), disdire l’abbonamento (RF16), cambiare la lingua di visualizzazione (RF17) e cambiare la password associata all’account (RNF4). Effettuare il logout rimanda alla pagina di login, non è richiesto alcuno scambio di informazioni. Componenti diverse si occupano delle altre funzioni.
+
+\underline{Interfaccia richiesta - Operazione da eseguire}: questa componente richiede all’utente di scegliere quale operazione eseguire tra quelle disponibili.
+
+\underline{Interfaccia richiesta - Token utente}: viene richiesto l’identificativo dell’utente dopo l’accesso alla piattaforma, per legare all’account corretto le varie operazioni che si possono effettuare.
+
+\underline{Interfaccia fornita - Token utente}: nel caso in cui l’operazione scelta richieda un’azione da parte di un’altra componente, è necessario comunicare a quest’ultima l’identificativo dell’utente.
+
+\underline{Interfaccia fornita - Email utente}: nel caso in cui l’operazione scelta sia il cambio password, viene fornita l’email dell’utente che intende svolgere l’operazione ad una componente apposita.
+
+\underline{Interfaccia fornita - Lingua scelta}: nel caso in cui l’operazione scelta sia il cambio della lingua di visualizzazione, questa modifica viene comunicata ad un’altra componente che la implementerà.
+
+\subsubsection{Gestione anagrafica database}
+
+\underline{Descrizione}: questa componente si occupa dell’interazione con il database esterno al sistema per quanto riguarda i dati relativi agli account degli utenti.
+
+\underline{Interfaccia richiesta - Dati registrazione}: questa interfaccia riceve i dati di un nuovo utente che intende completare la registrazione e li inserisce nel database esterno utilizzato dal sistema.
+
+\underline{Interfaccia richiesta - Credenziali}: questa interfaccia riceve le credenziali, quindi email e password, di un utente e verifica due cose: la loro presenza nel database e la corretta associazione tra le due.
+
+\underline{Interfaccia richiesta - Email utente}: questa interfaccia riceve un’email inserita da un utente e verifica la sua presenza nel database.
+
+\underline{Interfaccia richiesta - Nuova password}: questa interfaccia richiede una password da associare ad un indirizzo email all’interno del database.
+
+\underline{Interfaccia richiesta - Dati utente nel DB}: questa interfaccia richiede i dati di un utente all’interno del database. Per fare ciò, fornisce le credenziali ad esso associate.
+
+\underline{Interfaccia richiesta - Lingua scelta}: questa interfaccia riceve una modifica sulla lingua di visualizzazione preferita da un utente e la salva nel database.
+
+\underline{Interfaccia fornita - Token utente}: questa interfaccia riceve l’identificativo di un utente già presente nella piattaforma.
+
+\underline{Interfaccia fornita - Dati utente da inserire}: questa interfaccia fornisce al database esterno i dati da inserire per la registrazione di un nuovo utente.
+
+\underline{Interfaccia fornita - Token utente}: questa interfaccia fornisce l’identificativo di un utente recuperato dal database esterno. Per il recupero sono state utilizzate le credenziali associate a quell’utente.
+
+\underline{Interfaccia fornita - Conferma email}: questa interfaccia fornisce una conferma dell’esistenza di un’email all’interno del database.
+
+\underline{Interfaccia fornita - Stato pagamenti}: questa interfaccia fornisce lo stato attuale dei pagamenti di un utente. In particolare, se il giorno corrente rientra in un periodo coperto dall’ultimo pagamento registrato per un certo account.
+
+
+\subsubsection{Gestione prelievo dati}
+
+\underline{Descrizione}: questa componente si occupa del prelievo dal database di tutti i dati di un particolare utente necessari quando quest’ultimo si logga. Questa componente si occupa di dividere questi dati e inviarli alle componenti corrispondenti.
+
+\underline{Interfaccia richiesta - Token utente}: viene richiesto un token per identificare l’utente che si è appena loggato.  La componente preleva questo dato e lo utilizza per prelevare informazioni nel database.
+
+\underline{Interfaccia fornita - Token utente}: Il token utente viene fornito alla componente Database.
+
+\underline{Interfaccia richiesta - Dati utente}: vengono richiesti i dati utente dal database. La componente Gestione prelievo dati spartirà e invierà questi dati alle corrispondenti componenti.
+
+\underline{Interfaccia fornita - Dati cronologia}: questa interfaccia fornisce ad un altro componente tutti i dati riguardanti la cronologia di un particolare utente.
+
+\underline{Interfaccia fornita - Dati consigliati}: questa interfaccia fornisce alla componente successiva tutti i dati riguardanti i brani che il sistema consigliava all’utente nel precedente login.  
+
+\underline{Interfaccia fornita - Dati libreria}: questa interfaccia fornisce tutti i dati e le informazioni utili alla gestione della libreria di un particolare utente, in particolare vengono scambiate tutte le informazioni riguardanti i brani che piacciono all’utente e tutte le sue playlist salvate.
+
+\subsubsection{Gestione libreria }
+
+\underline{Descrizione}: questa componente si occupa di gestire tutti i dati riguardanti la libreria; questi comprendono i brani che piacciono all’utente e le playlist salvate. Deve inoltre gestire tutte le azioni che possono essere effettuate sulla libreria tra cui l’aggiunta, eliminazione, riproduzione di brani e playlist.
+
+\underline{Interfaccia richiesta - Dati libreria}: Questa interfaccia richiede i dati riguardanti la libreria.
+
+\underline{Interfaccia richiesta - Azioni libreria}: Questa interfaccia prende in ingresso tutte le azioni che l’utente può svolgere sulla libreria. Le azioni possono essere ad esempio: aggiunta di brani ad una playlist, eliminazione di brani, rinomina di una playlist e in particolare di una playlist per la visualizzazione e il successivo ascolto dei brani salvati al suo interno.
+
+\underline{Interfaccia richiesta - Selezione release}: questa interfaccia prende in ingresso la selezione di una release che l’utente vuole ascoltare.
+
+\underline{Interfaccia fornita - Token raccolta}: questa interfaccia serve a fornire alla componente successiva il Token raccolta, che verrà utilizzato per la gestione di un interfaccia che mostra i brani della playlist selezionata dall’utente.
+
+\underline{Interfaccia fornita - Info brani in libreria}: questa interfaccia fornisce tutte le informazioni utili alla componente successiva (Gestione scelte canzoni suggerite) per la selezione di nuovi brani da consigliare. Queste informazioni sono: nome artista, tag brano, lunghezza brano.
+
+\underline{Interfaccia fornita - Token release}: questa interfaccia fornisce il Token (identificativo) di una determinata release alla componente successiva.
+
+\underline{Interfaccia fornita - libreria aggiornata}: questa interfaccia fornisce alla componente Gestione Database i dati aggiornati della libreria per fare in modo che questi possano essere salvati sul database.
+
+\subsubsection{Gestione releases per creator}
+
+\underline{Descrizione}: questa componente si occupa della gestione di tutti i dati appartenenti all’account creator e di tutte le operazioni che quest’ultimo può fare.
+
+\underline{Interfaccia richiesta - release}: questa interfaccia richiede l’input da parte dell’utente creator di una determinata release che può essere un brano o un album. 
+
+\underline{Interfaccia richiesta - Modifiche (Titolo/tag)}: questa interfaccia prende in ingresso tutte le modifiche che l’utente creator può effettuare. Le modifiche possono essere: titolo, tag.
+
+\underline{Interfaccia richiesta - Eliminazione}: questa interfaccia permette l’eliminazione di una propria release da parte dell’utente creator.
+
+\underline{Interfaccia fornita - Azioni release}: questa interfaccia fornisce alla componente successiva (Gestione Database) tutte le aggiunte e modifiche da applicare al database in seguito alle azioni compiute dall’utente creator.
+
+\subsubsection{Gestione cronologia}
+
+\underline{Descrizione}: questa componente si occupa della cronologia di visualizzazione di un utente, come da RF13. Mostra gli ultimi 30 brani ascoltati dall’utente in ordine cronologico inverso.
+
+\underline{Interfaccia richiesta - Dati cronologia}: questa interfaccia riceve i dati relativi alla cronologia di un determinato utente
+
+\underline{Interfaccia richiesta - Token brano riprodotto}: questa interfaccia riceve l’identificativo di un brano quando viene messo in riproduzione, così da poterlo aggiungere alla cronologia.
+
+\underline{Interfaccia richiesta - libreria aggiornata}: questa interfaccia prende in ingresso tutti i dati relativi alla libreria una volta che questa viene modificata. Questi dati vengono utilizzati per modificare il database.
+
+\underline{Interfaccia fornita - Token brano}: questa interfaccia fornisce l’identificativo di un brano ad un’altra componente nel momento in cui il brano viene selezionato per la riproduzione da parte dell’utente.
+
+\underline{Interfaccia fornita - Info ascolti passati}: questa interfaccia fornisce ad un’altra componente le informazioni relative agli ascolti passati dell’utente.
+
+\underline{Interfaccia fornita - Cronologia aggiornata}: la cronologia viene aggiornata dall’ascolto di nuovi brani. Viene man mano inviata ad un’altra componente che si occuperà del salvataggio di questi cambiamenti.
+
+\subsubsection{Gestione consigliati}
+
+\underline{Descrizione}: questa componente si occupa dell’elenco dei brani consigliati all’utente da parte della piattaforma, come da RF11. Raggruppa i brani consigliati all’utente e i controlli di feedback per ciascun brano.
+
+\underline{Interfaccia richiesta - Dati consigliati}: questa interfaccia riceve i dati relativi ai brani consigliati ad un determinato utente.
+
+\underline{Interfaccia richiesta - Feedback}: questa interfaccia riceve il feedback relativo ad uno specifico brano consigliato da parte dell’utente. Il feedback viene dato tramite appositi controlli sul lato di ogni brano.
+
+\underline{Interfaccia richiesta - Brani scelti per l’utente}: questa interfaccia riceve gli identificativi e alcune informazioni sui brani che un’altra componente ha scelto come suggerimenti. I dati ricevuti includono il titolo del brano e l’artista, così da poterli mostrare all’utente, e l’identificativo, da poter inviare ad altre componenti.
+
+\underline{Interfaccia fornita - Token brano}: questa interfaccia fornisce l’identificativo di un brano ad un’altra componente nel momento in cui il brano viene selezionato per la riproduzione da parte dell’utente.
+
+\underline{Interfaccia fornita - Dati ascolti passati}: questa interfaccia fornisce ad un’altra componente le informazioni relative ai brani consigliati all’utente in passato.
+
+\underline{Interfaccia fornita - Feedback utente}: il feedback ricevuto dall’utente relativo a dei brani consigliati viene consegnato ad un’altra componente.
+
+\subsubsection{Gestione scelta canzoni suggerite}
+
+\underline{Descrizione}: questa componente si occupa della scelta dei brani da suggerire all’utente; racchiude quindi l’algoritmo che si occupa dei suggerimenti. Per produrre dei buoni suggerimenti, lavora con i dati ricevuti dalla libreria, con i dati sugli ascolti passati, sui brani consigliati in passato e con il feedback dell’utente su quei brani.
+
+\underline{Interfaccia richiesta - Info brani in libreria}: questa interfaccia riceve dati relativi alle releases e alle playlists presenti nella libreria di un determinato utente.
+
+\underline{Interfaccia richiesta - Info ascolti passati}: questa interfaccia riceve la cronologia di ascolto di un determinato utente.
+
+\underline{Interfaccia richiesta - Dati consigliati passati}: questa interfaccia riceve informazioni relative ai brani che sono stati consigliati ad un determinato utente.
+
+\underline{Interfaccia richiesta - Dati brani}: questa interfaccia richiede dei dati relativi ad alcuni brani. Questi includono brani di artisti ascoltati dall’utente, con dei tag che si avvicinano a quelli dei brani che l’utente ascolta di frequente, etc.
+
+\underline{Interfaccia richiesta - Feedback utente}: questa interfaccia richiede le informazioni sul \\ feedback che l’utente ha dato rispetto ai brani che gli sono stati suggeriti.
+
+\underline{Interfaccia fornita - Token brani}: questa interfaccia fornisce gli identificativi dei brani che la componente ha richiesto.
+
+\underline{Interfaccia fornita - Brani scelti per l’utente}: questa interfaccia invia ad un’altra componente i brani che potrebbero piacere all’utente, sulla base dei dati analizzati.
+
+\subsubsection{Gestione ricerca}
+
+\underline{Descrizione}: questa componente si occupa di gestire la ricerca di releases, artisti o playlists all’interno della piattaforma, come da RF5.
+
+\underline{Interfaccia richiesta - Testo della ricerca}: questa interfaccia riceve in input il testo della ricerca dell’utente, ciò che deve essere cercato all’interno della piattaforma.
+
+\underline{Interfaccia richiesta - Risultato ricerca}: questa interfaccia riceve il risultato della ricerca all’interno del database della piattaforma. Questo consiste in un elenco dei vari identificativi
+
+\underline{Interfaccia fornita - Testo della ricerca}: questa interfaccia fornisce ad un’altra componente il testo della ricerca dell’utente.
+
+\underline{Interfaccia fornita - Token raccolta}: questa interfaccia fornisce ad un’altra componente l’identificativo della raccolta trovata nella ricerca. Questa può essere un album o una playlist dell’utente.
+
+\underline{Interfaccia fornita - Token brano}: questa interfaccia fornisce l’identificativo di un brano trovato nella ricerca ad un’altra componente, nel momento in cui il brano viene selezionato per la riproduzione da parte dell’utente.
+
+\underline{Interfaccia fornita - Token artista}: questa interfaccia fornisce ad un’altra componente l’identificativo di un artista trovato nella ricerca.
+
+\subsubsection{Gestione raccolta}
+
+\underline{Descrizione}: questa componente si occupa del raggruppamento e modifica di raccolte musicali, ovvero di album e playlists. Per una raccolta presenta il titolo, l’elenco dei brani ed eventuali opzioni di modifica. Le modifiche sono concesse nel caso in cui la raccolta in questione sia una playlist.
+
+\underline{Interfaccia richiesta - Token raccolta}: per visualizzare una raccolta è necessario il suo identificativo all’interno della piattaforma; questa è l’interfaccia che lo riceve.
+
+\underline{Interfaccia richiesta - Dati raccolta}: questa interfaccia si occupa del ricevere i dati relativi ad una raccolta da un’altra componente.
+
+\underline{Interfaccia richiesta - Brano selezionato}: questa interfaccia riceve un eventuale richiesta di riproduzione di un brano da parte dell’utente.
+
+\underline{Interfaccia richiesta - Azioni raccolta}: questa interfaccia riceve dall’utente eventuali azioni relative alla raccolta corrente. Queste includono l’aggiunta o eliminazione di nuovi brani, o il cambiamento del titolo della raccolta.
+
+\underline{Interfaccia fornita - Token brano}: questa interfaccia fornisce l’identificativo del brano da riprodurre ad un’altra componente.
+
+\underline{Interfaccia fornita - Token raccolta}: questa interfaccia si occupa di fornire l’identificativo di una raccolta ad un’altra componente, per il recupero dei dati relativi a quella raccolta.
+
+\underline{Interfaccia fornita - Azioni raccolta}: questa interfaccia si occupa di trasmettere i cambiamenti avvenuti ad una raccolta per via di azioni compiute dall’utente.
+
+\subsubsection{Gestione della coda}
+
+\underline{Descrizione}: questa componente si occupa della coda di riproduzione, come da RF7. Quando un brano viene riprodotto, vengono messe in coda eventuali canzoni ad essa legate, ovvero le canzoni successive nel caso in cui la canzone faccia parte di una playlist o di una release, fino alla fine. È possibile passare alla canzone successiva oppure riprodurre la coda in ordine casuale.
+
+\underline{Interfaccia richiesta - Token brano}: identificativo del brano appena riprodotto.
+
+\underline{Interfaccia richiesta - Fine brano}: viene fornito a questa componente il momento nel cui termina la riproduzione del brano attuale.
+
+\underline{Interfaccia fornita - Token brano}: identificativo del brano appena riprodotto, inviato per ricevere eventuali altri brani appartenenti alla stessa raccolta.
+
+\underline{Interfaccia fornita - Token release in coda}: la componente fornisce ad un’altra componente l’identificativo del prossimo brano in coda.
+
+\underline{Interfaccia richiesta - Token brani nella raccolta}: questa interfaccia riceve gli identificativi dei brani legati a quello messo in riproduzione e che andranno aggiunti alla coda.
+
+\subsubsection{Interfaccia creator}
+
+\underline{Descrizione}: questa interfaccia presenta le informazioni relative ad un artista, come da RF19. Queste includono il nome del creator, i brani e gli album pubblicati.
+
+\underline{Interfaccia richiesta - Brano selezionato}: questa interfaccia riceve in input il brano selezionato dall’utente dalla lista dei brani pubblicati dall’artista.
+
+\underline{Interfaccia richiesta - Album selezionato}: questa interfaccia riceve in input l’album selezionato dall’utente dalla lista degli album pubblicati dall’artista.
+
+\underline{Interfaccia richiesta - Dati artista}: questa interfaccia riceve i dati relativi ad un artista da un’altra componente, così da poterli mostrare.
+
+\underline{Interfaccia richiesta - Token artista}: questa interfaccia riceve l’identificativo dell’artista i cui dati andranno mostrati. 
+
+\underline{Interfaccia fornita - Token raccolta}: questa interfaccia  fornisce l’identificativo dell'album selezionato da parte dell’utente ad un’altra componente, che si occuperà di gestire l’interazione con la raccolta.
+
+\underline{Interfaccia fornita - Token artista}: questa interfaccia  fornisce l’identificativo di un creator per poter poi recuperare tutti i dati relativi ad esso.
+
+\underline{Interfaccia fornita - Token brano}: questa interfaccia fornisce l’identificativo di un brano ad un’altra componente nel momento in cui il brano viene selezionato per la riproduzione da parte dell’utente.
+
+\subsubsection{Gestione riproduzione}
+
+\underline{Descrizione}: questa componente si occupa della gestione della riproduzione di un brano, come da RF6. Permette l’avvio, interruzione e ripresa della riproduzione di una canzone.
+
+\underline{Interfaccia richiesta - Token brano}: questa interfaccia si occupa di recuperare l’identificativo del brano da riprodurre. Un brano può venir riprodotto da più punti all’interno della piattaforma, questa è l’informazione che permette alla componente di avviare la riproduzione.
+
+\underline{Interfaccia richiesta - Dati brano da riprodurre}: questa interfaccia recupera il brano da riprodurre da un’altra componente. Qui si parla dei dati effettivi che compongono il brano.
+
+\underline{Interfaccia fornita - Fine brano}: questa interfaccia comunica ad un’altra componente il momento in cui termina la riproduzione del brano corrente.
+
+\underline{Interfaccia fornita - Token brano}: questa componente fornisce l’identificativo del brano da riprodurre (o che è appena stato riprodotto) ad altre componenti.
+
+\underline{Interfaccia richiesta - Token release in coda}: questa componente riceve l'identificativo \\ della prossima canzone in coda, e quindi da riprodurre.
+
+\subsubsection{Gestione Database}
+
+\underline{Descrizione}: questa componente si occupa di tutte le operazioni di lettura e scrittura nel database.
+
+\underline{Interfaccia richiesta - Token utente}: interfaccia che richiede un identificativo per l’utente che ha fatto il login. Questa informazione viene utilizzata per prelevare tutti i dati di quel particolare utente.
+
+\underline{Interfaccia fornita - Dati utente}: Questa interfaccia fornisce alla componente Gestione prelievo dati tutti i dati dell’utente nel momento in cui quest’ultimo si logga.
+
+\underline{Interfaccia richiesta - Cronologia aggiornata}: Questa interfaccia richiede i dati aggiornati dalla componente Gestione cronologia. Questi dati vengono utilizzati per aggiornare il database.
+
+\underline{Interfaccia fornita - Dati brani}: questa interfaccia fornisce alla componente Gestione scelta canzoni suggerite i dati dei brani riguardanti tag, artista e durata.
+
+\underline{Interfaccia richiesta - Caratteristiche brani}: questa interfaccia richiede dei dati “caratteristiche” che verranno utilizzati per prelevare e poi fornire dei brani con caratteristiche simili alla componente Gestione scelta canzoni suggerite. 
+
+\underline{Interfaccia richiesta - Testo ricerca}: questa interfaccia richiede il testo della ricerca dalla componente Gestione ricerca. Gestione database utilizza questa informazione per cercare all’interno del database se esiste una corrispondenza.
+
+\underline{Interfaccia fornita - Risultato ricerca}: questa interfaccia fornisce i risultati della ricerca effettuata sul database. Questo risultato sarà un identificativo per il brano/album/playlist/\\artista che l’utente ha cercato.
+
+\underline{Interfaccia richiesta - Token raccolta}: questa interfaccia richiede l’identificativo di una particolare raccolta. Questo token verrà utilizzato per cercare e prelevare i dati relativi a quella raccolta nel database.
+
+\underline{Interfaccia fornita - Dati  raccolta}: questa interfaccia fornisce ad una componente tutti i dati relativi ad una determinata raccolta.
+
+\underline{Interfaccia richiesta - Token brano}: Questa interfaccia viene utilizzata quando io metto in riproduzione un brano che fa parte di una raccolta (album/playlist). Quindi la componente richiede il token di quel brano e lo utilizza per verificare se fa parte di una raccolta. In caso affermativo invia i token dei brani successivi nella raccolta (vedi interfaccia successiva).
+
+\underline{Interfaccia fornita - Token brani nella raccolta}: questa interfaccia fornisce gli identificativi dei brani di una raccolta (album/playlist).
+
+\underline{Interfaccia fornita - Dati brano da riprodurre}: questa interfaccia fornisce i dati di un brano che verrà riprodotto dalla componente Gestione riproduzione.
+
+\underline{Interfaccia richiesta - Token brano}: questa interfaccia richiede l’identificativo di un brano. Il token viene utilizzato dalla componente per prelevare i dati di quel brano.
+
+\underline{Interfaccia richiesta - Azioni releases (caric, modif, elimi)}: questa interfaccia richiede tutti i dati per le modifiche e le aggiunte da applicare al database.
+
+\underline{Interfaccia richiesta - Token artista}: questa interfaccia richiede l’identificativo dell’artista (creator) per la visualizzazione dei suoi contenuti. Questo token verrà utilizzato per prelevare dal database i dati dell’artista.
+
+\underline{Interfaccia fornita - Dati artista}: questa interfaccia fornisce i dati relativi ad un artista alla componente Interfaccia creator
+
+Nelle seguenti interfacce la componente Gestione Database si interfaccia con il database:
+
+\underline{Interfaccia fornita - Log}: questa interfaccia fornisce i log ad un logger //
+
+\underline{Interfaccia fornita - Contenuti piattaforma}: questa interfaccia fornisce ad una piattaforma di backup tutti i dati del sistema 
+
+\underline{Interfaccia fornita - Azioni release}: questa interfaccia fornisce tutte le azioni che devono essere svolte sui dati riguardanti le releases del creator.
+
+\underline{Interfaccia fornita - Azioni raccolta}: questa interfaccia fornisce tutte le azioni che devono essere svolte sui dati riguardanti le raccolte 
+
+\underline{Interfaccia richiesta - Dati brano}: questa interfaccia richiede al database tutti i dati di un particolare brano. Questi dati verranno poi utilizzati per la riproduzione.
+
+\underline{Interfaccia richiesta - Dati artista}: questa interfaccia richiede tutti i dati di un particolare artista. Questi dati sono poi utilizzati per la visualizzazione dell’interfaccia dell’artista.
+
+\underline{Interfaccia fornita - Libreria aggiornata}: Questa interfaccia fornisce al database i dati aggiornati della libreria.
+
+\underline{Interfaccia fornita - Cronologia aggiornata}: Questa interfaccia fornisce al database i dati aggiornati della cronologia.
+
+\underline{Interfaccia richiesta - Presenza release/artista}: Questa interfaccia richiede la verifica della presenza di una particolare release/artista all’interno del database.
+
+\underline{Interfaccia richiesta - Dati raccolta}: Questa interfaccia richiede dal database i dati di una particolare raccolta.
+
+\underline{Interfaccia richiesta - Dati utente}: Questa interfaccia richiede dal database tutti i dati relativi ad un particolare utente. Questa operazione viene svolta nel momento in cui un utente si logga ed entra nel sito.
+
+\underline{Interfaccia richiesta - Ricerca nel DB}: Questa interfaccia comprende la ricerca di particolare artista/releases nel database e richiede la conferma della sua presenza in esso.
 
 \subsection{Diagramma delle componenti}
+
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=\textwidth]{diagrams/component-1.png}
+\end{figure}
+
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=\textwidth]{diagrams/component-2.png}
+\end{figure}
 
 \end{document}
