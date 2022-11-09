@@ -467,9 +467,37 @@ Presentiamo i requisiti non funzionali del progetto. Ciascun requisito è accomp
 
 Presentiamo ora un'analisi del contesto nel quale si inserirà il nostro progetto. Per fare ciò, terremo in considerazione i sistemi e gli attori con i quali la nostra piattaforma andrà ad interagire e gli attori. L'analisi sarà costituita da una descrizione testuale di attori e sistemi e da un diagramma di contesto che riassume la situazione.
 
+\subsection{Attori e sistemi esterni}
+
+\paragraph{Utente} La persona che si registrerà e pagherà per il servizio, che comprende la riproduzione di brani in streaming e la gestione di playlist definite dall’utente. Oltre questo, l’utente riceve consigli dal sistema e può dare del feedback a riguardo. L’utente deve inoltre essere capace di cambiare qualche impostazione, tra cui gestire l’abbonamento.
+
+\paragraph{Creator} L’utente creator, oltre a poter fruire del servizio come ogni normale utente, è anche capace di pubblicare i propri brani come releases.
+
+\paragraph{Sistema Pagamento} Attraverso il sistema di pagamento il sistema manda con cadenza mensile i pagamenti attraverso il metodo utilizzato dall’utente.
+
+\paragraph{Mail Server} Attraverso il mail server il sistema manda emails (ad esempio per verificare l’email inserita in fase di registrazione, per il cambio della password in caso di smarrimento, etc.).
+
+\paragraph{Database} Il database tiene separatamente le informazioni riguardo utenti e releases.
+
+\paragraph{DRM} Il Digital Rights Management system si preoccupa di proteggere i files per rendere difficile la pirateria
+
+\newpage
+\subsection{Diagramma di contesto}
+
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=\textwidth]{diagrams/context.png}
+\end{figure}
+
 \newpage
 \section{Diagramma delle componenti}
 
 Dopo il contesto nel quale si inserirà il nostro sistema, andiamo ad analizzare le varie componenti che lo formano. L'analisi sarà formata da una descrizione testuale di ciascuna componente e delle sue interfacce in entrata e in uscita. Terminerà con un diagramma delle componenti.
+
+\subsection{Analisi delle componenti}
+
+
+
+\subsection{Diagramma delle componenti}
 
 \end{document}
