@@ -37,6 +37,18 @@ jobs:
         run: |
           set -xe
           file 'Documento dei requisiti.pdf' | grep -q 'PDF'
+        
+      - name: Compila il documento D3 (LaTeX)
+        uses: xu-cheng/latex-action@v2
+        with:
+          root_file: 'Documento di architettura.tex'
+          working_directory: source
+          args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode -outdir=..
+
+      - name: Verifica la presenza e correttezza del D3
+        run: |
+          set -xe
+          file 'Documento di architettura.pdf' | grep -q 'PDF'
 
       - name: Carica i file aggiornati sulla repository
         run: |

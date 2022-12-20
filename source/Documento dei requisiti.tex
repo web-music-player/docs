@@ -242,7 +242,7 @@ Per descrivere questo use-case, facciamo uso di un diagramma delle attività:
 
 \begin{figure}[htp]
     \centering
-    \includegraphics[width=0.75\textwidth]{diagrams/use-case-14-15-16-17.png}
+    \includegraphics[width=0.75\textwidth]{diagrams/use-case-14-15-16-17-18.png}
 \end{figure}
 
 \subsubsection*{RF 14 Impostazioni}
@@ -259,7 +259,18 @@ Per descrivere questo use-case, facciamo uso di un diagramma delle attività:
     \item L’utente viene riportato alla pagina di login
 \end{enumerate}
 
-\subsubsection*{RF 16 Disdire l'abbonamento}
+\subsubsection*{RF 16 Cancellazione account}
+
+\textbf{Descrizione:} l’utente può richiedere la rimozione del suo account dalla piattaforma. \newline
+\textbf{Passi:}
+\begin{enumerate}
+    \item L’utente si reca alla pagina delle impostazioni
+    \item L’utente preme un pulsante per terminare richiedere l'eliminazione del suo account
+    \item L’utente creator conferma la scelta
+    \item L'utente viene riportato alla schermata di registrazione
+\end{enumerate}
+
+\subsubsection*{RF 17 Disdire l'abbonamento}
 
 \textbf{Descrizione:} l’utente può disconnettersi dalla piattaforma. \newline
 \textbf{Passi:}
@@ -270,7 +281,7 @@ Per descrivere questo use-case, facciamo uso di un diagramma delle attività:
     \item Una volta terminato quel periodo, dopo l’accesso alla piattaforma l’utente sarà portato alla pagina del pagamento
 \end{enumerate}
 
-\subsubsection*{RF 17 Cambio lingua}
+\subsubsection*{RF 18 Cambio lingua}
 
 \textbf{Descrizione:}  l’utente può cambiare la lingua della piattaforma. \newline
 \textbf{Passi:}
@@ -280,26 +291,26 @@ Per descrivere questo use-case, facciamo uso di un diagramma delle attività:
     \item Il servizio si adatta, modificando i vari campi testuali per riflettere la lingua selezionata dall’utente
 \end{enumerate}
 
-\subsection*{RF 18-19}
+\subsection*{RF 19-20}
 
 \begin{figure}[htp]
     \centering
-    \includegraphics[width=0.75\textwidth]{diagrams/use-case-18-19.png}
+    \includegraphics[width=0.75\textwidth]{diagrams/use-case-19-20.png}
 \end{figure}
 
-\subsubsection*{RF 18 Account creator}
+\subsubsection*{RF 19 Account creator}
 
 \textbf{Descrizione:} l’account creator consiste in un'estensione dell'account standard.
 
-\subsubsection*{RF 19 Visualizzare account creator}
+\subsubsection*{RF 20 Visualizzare account creator}
 
 \textbf{Descrizione:} gli utenti creator e gli utenti standard possono visualizzare le pagine degli account creator. Qui sono presenti due elenchi: i singoli caricati e gli album caricati da quel creator.
 
-\subsection*{RF20 Caricare releases}
+\subsection*{RF21 Caricare releases}
 
 \begin{figure}[htp]
     \centering
-    \includegraphics[width=0.75\textwidth]{diagrams/use-case-20.png}
+    \includegraphics[width=0.75\textwidth]{diagrams/use-case-21.png}
 \end{figure}
 
 \textbf{Descrizione:} questo use case descrive il caricamento delle releases sulla piattaforma da parte dei creator.
@@ -314,11 +325,11 @@ Per descrivere questo use-case, facciamo uso di un diagramma delle attività:
 \end{enumerate}
 \textbf{[extension 1]} L’utente creator può aggiungere dei tag alla release caricata.
 
-\subsection*{RF21 Modificare releases}
+\subsection*{RF22 Modificare releases}
 
 \begin{figure}[htp]
     \centering
-    \includegraphics[width=0.75\textwidth]{diagrams/use-case-21.png}
+    \includegraphics[width=0.75\textwidth]{diagrams/use-case-22.png}
 \end{figure}
 
 \textbf{Descrizione:} gli utenti creator possono modificare il titolo e i tag delle releases che hanno caricato sulla piattaforma. Questo dalla schermata del loro account.
@@ -332,11 +343,11 @@ Per descrivere questo use-case, facciamo uso di un diagramma delle attività:
     
 \end{enumerate}
 
-\subsection*{RF22 Eliminare releases}
+\subsection*{RF23 Eliminare releases}
 
 \begin{figure}[htp]
     \centering
-    \includegraphics[width=0.75\textwidth]{diagrams/use-case-22.png}
+    \includegraphics[width=0.75\textwidth]{diagrams/use-case-23.png}
 \end{figure}
 
 \textbf{Descrizione:} gli utenti creator possono cancellare dalla piattaforma releases da loro caricate. Questo dalla schermata del loro account.
@@ -572,7 +583,7 @@ Dopo il contesto nel quale si inserirà il nostro sistema, andiamo ad analizzare
 
 \subsubsection{Impostazioni}
 
-\underline{Descrizione}: questa componente consente all’utente di effettuare le seguenti operazioni: effettuare il logout (RF15), disdire l’abbonamento (RF16), cambiare la lingua di visualizzazione (RF17) e cambiare la password associata all’account (RNF4). Effettuare il logout rimanda alla pagina di login, non è richiesto alcuno scambio di informazioni. Componenti diverse si occupano delle altre funzioni.
+\underline{Descrizione}: questa componente consente all’utente di effettuare le seguenti operazioni: effettuare il logout (RF15), disdire l’abbonamento (RF16), cambiare la lingua di visualizzazione (RF17), cambiare la password associata all’account (RNF4), richiedere la cancellazione dell'account. Effettuare il logout rimanda alla pagina di login, non è richiesto alcuno scambio di informazioni. Componenti diverse si occupano delle altre funzioni.
 
 \underline{Interfaccia richiesta - Operazione da eseguire}: questa componente richiede all’utente di scegliere quale operazione eseguire tra quelle disponibili.
 
