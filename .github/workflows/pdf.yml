@@ -50,6 +50,18 @@ jobs:
           set -xe
           file 'Documento di architettura.pdf' | grep -q 'PDF'
 
+      - name: Compila il documento D4 (LaTeX)
+        uses: xu-cheng/latex-action@v2
+        with:
+          root_file: 'Documento di sviluppo.tex'
+          working_directory: source
+          args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode -outdir=..
+
+      - name: Verifica la presenza e correttezza del D4
+        run: |
+          set -xe
+          file 'Documento di sviluppo.pdf' | grep -q 'PDF'
+
       - name: Carica i file aggiornati sulla repository
         run: |
           git config user.name 'Workflow Action'
