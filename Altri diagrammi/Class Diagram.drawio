@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2023-01-02T18:55:13.699Z" agent="5.0 (X11)" etag="1CYSrepR4_zRcUuaAhbd" version="20.6.0" type="github">
+<mxfile host="app.diagrams.net" modified="2023-01-02T21:30:33.795Z" agent="5.0 (X11)" etag="44RNFBPArU6iwa0mfZZ4" version="20.6.0" type="github">
   <diagram id="BJjrxpqgjmTvx92bAYLw" name="Pagina-1">
-    <mxGraphModel dx="1349" dy="1096" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" background="none" math="0" shadow="0">
+    <mxGraphModel dx="899" dy="864" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" background="none" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -118,8 +118,8 @@
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="953" y="982" />
-              <mxPoint x="1489" y="982" />
-              <mxPoint x="1489" y="445" />
+              <mxPoint x="1502" y="982" />
+              <mxPoint x="1502" y="445" />
               <mxPoint x="1486" y="445" />
               <mxPoint x="1486" y="138" />
             </Array>
@@ -258,7 +258,7 @@
         <mxCell id="131" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" parent="129" vertex="1">
           <mxGeometry y="78" width="421.7" height="8" as="geometry" />
         </mxCell>
-        <mxCell id="132" value="+ doQuery(queryType): " style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="129" vertex="1">
+        <mxCell id="132" value="+ runQuery(query: String): DBResult " style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="129" vertex="1">
           <mxGeometry y="86" width="421.7" height="26" as="geometry" />
         </mxCell>
         <mxCell id="232" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=0.998;exitY=0.378;exitDx=0;exitDy=0;startArrow=none;startFill=0;endArrow=classic;endFill=1;entryX=-0.004;entryY=0.924;entryDx=0;entryDy=0;entryPerimeter=0;exitPerimeter=0;startSize=9;" parent="1" source="219" target="134" edge="1">
@@ -814,7 +814,7 @@
         <mxCell id="96751-Ib_5gYJb3hZsCR-285" value="- streamBytes(richiesta: HTTPRequest, brano: byte [*]): void&#xa;+ streamBrano(richiesta: HTTPRequest, brano: Brano): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="XoviuHmB7AYi5fDgY0DH-279" vertex="1">
           <mxGeometry y="60" width="356" height="46" as="geometry" />
         </mxCell>
-        <mxCell id="XoviuHmB7AYi5fDgY0DH-283" value="&lt;font data-font-src=&quot;https://pvinis.github.io/iosevka-webfont/3.4.1/iosevka.css&quot; style=&quot;font-size: 13px;&quot;&gt;context &lt;/font&gt;PlayerQueue&lt;font data-font-src=&quot;https://pvinis.github.io/iosevka-webfont/3.4.1/iosevka.css&quot; style=&quot;font-size: 13px;&quot;&gt;::accodaBrano(brano: Brano)&lt;/font&gt;&lt;div style=&quot;font-size: 13px;&quot; align=&quot;left&quot;&gt;&lt;font data-font-src=&quot;https://pvinis.github.io/iosevka-webfont/3.4.1/iosevka.css&quot; style=&quot;font-size: 13px;&quot;&gt;post: self.coda-&amp;gt;&lt;/font&gt;&lt;font data-font-src=&quot;https://pvinis.github.io/iosevka-webfont/3.4.1/iosevka.css&quot; style=&quot;font-size: 13px;&quot;&gt;count(brano) = 1&lt;/font&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;fontFamily=Helvetica;fontSize=13;verticalAlign=top;spacingLeft=2;" vertex="1" parent="1">
+        <mxCell id="XoviuHmB7AYi5fDgY0DH-283" value="&lt;font data-font-src=&quot;https://pvinis.github.io/iosevka-webfont/3.4.1/iosevka.css&quot; style=&quot;font-size: 13px;&quot;&gt;context &lt;/font&gt;PlayerQueue&lt;font data-font-src=&quot;https://pvinis.github.io/iosevka-webfont/3.4.1/iosevka.css&quot; style=&quot;font-size: 13px;&quot;&gt;::accodaBrano(brano: Brano)&lt;/font&gt;&lt;div style=&quot;font-size: 13px;&quot; align=&quot;left&quot;&gt;&lt;font data-font-src=&quot;https://pvinis.github.io/iosevka-webfont/3.4.1/iosevka.css&quot; style=&quot;font-size: 13px;&quot;&gt;post: self.coda-&amp;gt;includes&lt;/font&gt;&lt;font data-font-src=&quot;https://pvinis.github.io/iosevka-webfont/3.4.1/iosevka.css&quot; style=&quot;font-size: 13px;&quot;&gt;(brano)&lt;br&gt;&lt;/font&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;fontFamily=Helvetica;fontSize=13;verticalAlign=top;spacingLeft=2;" vertex="1" parent="1">
           <mxGeometry x="1379" y="1887" width="329" height="43" as="geometry" />
         </mxCell>
         <mxCell id="XoviuHmB7AYi5fDgY0DH-312" value="&lt;div style=&quot;font-size: 13px;&quot; align=&quot;left&quot;&gt;&lt;font data-font-src=&quot;https://pvinis.github.io/iosevka-webfont/3.4.1/iosevka.css&quot; style=&quot;font-size: 13px;&quot;&gt;context Utenti::creaUtente(utente: Utente): Utente&lt;br&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;post: Utenti.esistenzaEmail(utente.getEmail())&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;fontFamily=Helvetica;fontSize=13;verticalAlign=top;spacingLeft=2;" vertex="1" parent="1">
