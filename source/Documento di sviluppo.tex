@@ -136,7 +136,8 @@ Il progetto dipende da diverse librerie NodeJS per il suo funzionamento. Queste 
     \item \texttt{mongoose} come ponte tra il backend e il database MongoDB
     \item \texttt{multer} come middleware
     \item \texttt{swagger-ui-express} per la documentazione
-    \item \texttt{typescript} come aiuto allo sviluppo
+    \item \texttt{jest} e \texttt{supertest} per il testing
+    \item \texttt{typescript} e i vari \texttt{@types} come aiuto allo sviluppo
 \end{itemize}
 
 \subsection{Modellazione dati nel database}
@@ -394,16 +395,215 @@ Nel caso in cui \textit{code} = 404  e \textit{message} = ”Not Found” allora
 \newpage
 \section{Sviluppo delle API}
 
+Abbiamo sviluppato 10 API a partire dai \textbf{modelli delle risorse} visti precedentemente. Queste consistono nelle API per la registrazione e l'accesso, per la ricerca e l'eliminazione account, per caricare, modificare ed eliminare un brano, per ottenere un brano a partire dall'ID e per ottenere o modificare una lista preferiti.
+
+\subsection{Registrazione}
+
+Questa API viene utilizzata per inserire un nuovo Utente al database. Una volta ricevua la richiesta, avviene una validazione dell'input per assicurare l'inserimento di dati corretti. Se l'utente non è già registrato, viene creato un nuovo oggetto basato sullo schema Utente al quale vengono assegnati i dati inseriti. Questo viene inserito nel database, e alcuni suoi campi assieme ad un token generato al momento vengono restituiti all'utente.
+
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{source-code/api-registrazione.png}
+    \caption{API per la registrazione}
+\end{figure}
+
+\subsection{Accesso}
+
+Questa API permette l'accesso di un utente già registrato alla piattaforma. Viene verificato si tratti di un utente esistente, e in caso affermativo si procede al confronto tra le password. Se il confronto è positivo viene generato il token e viene restituita la risposta corrispondente.
+
+\texttt{Nota:} da questo momento in poi le richieste devono essere accompagnate da un \textbf{token} di accesso. Questo deve essere presente nell'header della richiesta e viene verificato prima che la richiesta raggiunga la rispettiva API.
+
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{source-code/api-accesso.png}
+    \caption{API per l'accesso}
+\end{figure}
+
+\subsection{Ricerca}
+
+La ricerca di un brano tramite il titolo fa uso di una funzione di ricerca del database: \texttt{\$search}. Per abilitarla è stato creato un indice per il campo \textit{titolo} dello schema Brano. Vengono restituiti i primi 10 risultati della ricerca.
+
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{source-code/api-ricerca.png}
+    \caption{API per la ricerca}
+\end{figure}
+
+\subsection{Elimina account}
+
+Questa API si occupa della cancellazione di un account dalla piattaforma. Una volta ricevuta la richiesta, si verifica che l'utente in questione sia presente nel database. In caso affermativo, vengono rimosso dal sistema l'utente, la sua lista preferiti ed eventuali brani da lui caricati.
+
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{source-code/api-elimina-account.png}
+    \caption{API per l'eliminazione dell'account}
+\end{figure}
+
+\subsection{Carica brano}
+
+Il caricamento di un nuovo brano viene gestito da questa API. I dati in input vengono validati (campi non vuoti, artista effettivamente registrato come creator, etc.), e viene verificato che non esista un altro brano dello stesso artista con quel titolo. Se tutti i controlli vengono passati, si crea un nuovo oggetto a partire dallo schema Brano e viene inserito nel database.
+
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{source-code/api-carica-brano.png}
+    \caption{API per caricare un brano}
+\end{figure}
+
+\subsection{Elimina Brano}
+
+Questa API si occupa della rimozione di un brano dalla piattaforma. L'ID ricevuto viene validato, si verifica che il brano sia presente sulla piattaforma, e lo si rimuove dal database. Viene inoltre rimosso dalle varie liste preferiti che lo includevano.
+
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{source-code/api-elimina-brano.png}
+    \caption{API per eliminare un brano}
+\end{figure}
+
+\subsection{Modifica brano}
+
+La modifica di un brano avviene tramite un'API di tipo \texttt{PATCH}. Vengono infatti forniti solamente i campi che si possono modificare, quindi il titolo e i tags del brano. Dopo una validazione dell'input si verifica che non esista un altro brano dello stesso artista con il titolo che si intende assegnare al brano corrente. In caso negativo, si procede al salvataggio della modifica nel database.
+
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{source-code/api-modifica-brano.png}
+    \caption{API per modificare un brano}
+\end{figure}
+
+\subsection{Ottieni brano}
+
+Questa API si occupa di ottenere un brano a partire dall'ID. Quando un'altra API restituisce una lista di ID brani, questa API viene chiamata per ottenere a partire da quegli ID tutti i dati dei rispettivi brani. Validazione dell'input, verifica dell'esistenza del brano, e in caso affermativo il brano viene restituito.
+
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{source-code/api-ottieni-brano.png}
+    \caption{API per ottenere un brano}
+\end{figure}
+
+\subsection{Ottieni preferiti}
+
+Questa API restituisce la lista preferiti di un utente a partire dal suo ID. Validazione dell'input, si verifica l'esistenza dell'utente e si restituisce la lista. Nel caso in cui non fosse ancora stata creata per quello specifico utente, si crea una lista vuota e si restituisce quella.
+
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{source-code/api-ottieni-preferiti.png}
+    \caption{API per ottenere i preferiti}
+\end{figure}
+
+\subsection{Modifica preferiti}
+
+Questa API permette l'aggiunta o rimozione di un brano dalla lista dei preferiti. È l'API con il maggior numero di controlli dei dati ricevuti (ID, esistenza utente, esistenza brano, etc.). Nel caso in cui la lista preferiti non sia presente per l'utente considerato, viene creata una nuova lista e si opera su quella. Per un'operazione di "aggiunta" si verifica che il brano non sia già presente; in caso negativo, si inserisce nella lista l'ID del brano fornito. Per un'operazione di "rimozione" si verifica che il brano sia effettivamente nella lista preferiti; in caso positivo, il suo ID viene rimosso dalla lista. In entrambi i casi, la lista aggiornata viene restituita nel corpo della risposta.
+
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{source-code/api-modifica-preferiti.png}
+    \caption{API per modificare i preferiti}
+\end{figure}
+
 \newpage
 \section{Documentazione delle API}
+
+Le API elencate nella sezione precedente sono state documentate utilizzando il modulo \texttt{swagger-ui-express}, seguendo lo standard OpenAPI. Sono state descritti i vari endpoint e i modelli dati che abbiamo considerato fin'ora: Utente, Brano, Preferiti.
+
+Per permettere un facile accesso alla documentazione è possibile visitare una pagina dove è presente l'interfaccia \textbf{Swagger UI}, un modo semplice e chiaro per visualizzare ciò che riguarda l'API: dall'URI, dal metodo HTTP, alla struttura della richiesta e alle possibili risposte. La modalità interattiva di Swagger UI permette il testing dell'API direttamente sul sito.
+
+La documentazione è consultabile tramite l'endpoint \texttt{/api-dpcs}.
+
+Di seguito riportiamo l'esempio di quattro API che sfruttano metodi HTTP differenti: una \texttt{GET}, una \texttt{POST}, una \texttt{PATCH} e una \texttt{DELETE}.
+
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=\textwidth]{code/documentazione-swagger-ui.png}
+    \caption{SwaggerUI}
+\end{figure}
+
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=\textwidth]{code/documentazione-get.png}
+    \caption{Documentazione API di tipo GET}
+\end{figure}
+
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=\textwidth]{code/documentazione-post.png}
+    \caption{Documentazione API di tipo POST}
+\end{figure}
+
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=\textwidth]{code/documentazione-patch.png}
+    \caption{Documentazione API di tipo PATCH}
+\end{figure}
+
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=\textwidth]{code/documentazione-delete.png}
+    \caption{Documentazione API di tipo DELETE}
+\end{figure}
 
 \newpage
 \section{Implementazione del frontend}
 
+Il frontend consiste in un'interfaccia grafica interattiva tramite la quale è possibile eseguire diverse azioni grazie alle API descritte nelle sezioni precedenti. È stato realizzato con il framework \textbf{VueJS}.
+
+La schermata principale presenta due schede tramite le quali è possibile effettuare il login o registrarsi sulla piattaforma. Queste richiamano le corrispettive API per accesso registrazione viste precedentemente. Una volta effettuato l'accesso, il token restituito dall'API viene mantenuto in memoria dal frontend. Sarà necessario per le successive richieste alle API.
+
+Effettuare l'accesso sblocca le varie funzionalità della piattaforma, presenti nella metà destra dell'interfaccia. È possibile fare il logout tramite pulsante apposito.
+
+La prima funzionalità comparsa è la ricerca. È possibile cercare un brano tramite il titolo, e una volta ottenuti i risultati è possibile aggiungerli ai preferiti. Successivamente troviamo l'elenco dei preferiti, dai quali è possibile rimuovere un brano se desederato. Segue infine una sezione dedicata alla rimozione del proprio account, decisione che prevede una conferma da parte dell'utente.
+
+Nel caso in cui l'utente però sia creator, l'interfaccia guadagna alcune funzionalità. È presente una nuova sezione dedicata al caricamento di un brano, e per ciascun risultato nelle ricerche, \underline{se pubblicato da quel creator}, è possibile tramite pulsanti appositi modificare o eliminare quel brano.
+
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=\textwidth]{code/accesso.png}
+    \caption{Schermata di accesso}
+\end{figure}
+
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=\textwidth]{code/registrazione.png}
+    \caption{Schermata di registrazione}
+\end{figure}
+
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=\textwidth]{code/principale.png}
+    \caption{Schermata principale}
+\end{figure}
+
 \newpage
 \section{GitHub repository e deployment}
 
+Il progetto è presente su GitHub. Le repository sono gestite dall'organizzazione Web Music Player. Il backend e il frontend sono salvati su due repository distinte.
+
+Il deployment è gestito da due servizi diversi: \textbf{Railway} gestisce il deployment del backend, mentre \textbf{Netlify} si occupa del deployment del frontend. Le corrispettive applicazioni su GitHub sono collegate alle repository, in modo da assemblare ed effettuare il deploy ad ogni commit nel branch \texttt{main}.
+
+\begin{itemize}
+    \item Backend: \href{https://wmp-backend.up.railway.app}{https://wmp-backend.up.railway.app}
+    \item Frontend: \href{https://wmp-frontend.netlify.app}{https://wmp-frontend.netlify.app}
+\end{itemize}
+
+Nel caso in cui backend o frontend non dovessero essere online, è possibile seguire le istruzioni del \texttt{/README.md} all'interno della repository per avviare il progetto in locale.
+
 \newpage
 \section{Testing delle API}
+
+Il testing delle API è stato realizzato utilizzando due librerie di NodeJS: \textbf{Jest} e \textbf{supertest}. Jest è il framework principale, che gestisce la divisione in suite di test, l'esecuzione dei vari unit test e la produzione del report sulla test coverage. supertest è stato utilizzato per occuparsi delle richieste da inviare ai vari endpoint.
+
+All'interno della cartella \texttt{/src/test} sono presenti i file di test. Sono presenti quattro suite di test, una per gruppo di API simili; corrispondono ai file presenti in \texttt{/src} che si occupano delle API.
+
+All'interno della suite di test sono presenti tanti test case quante le possibili risposte che un'API può restituire. Di seguito il report sulla coverage dei test e un esempio di suite di test.
+
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=\textwidth]{code/coverage.png}
+    \caption{Coverage dei casi di test}
+\end{figure}
+
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=\textwidth]{source-code/test-elimina-account.png}
+    \caption{Esempio suite di test - Eliminazione account}
+\end{figure}
 
 \end{document}
