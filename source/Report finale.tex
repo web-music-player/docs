@@ -1,0 +1,141 @@
+\documentclass[a4paper,12pt]{article}
+
+%%%%%%%%%%%%%%%%%%%%
+%%%%  PREAMBLE  %%%%
+%%%%%%%%%%%%%%%%%%%%
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+\usepackage[english,italian]{babel}
+
+\usepackage{hyperref}
+\hypersetup{hidelinks}
+
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{minipage-marginpar}
+\usepackage{fancyhdr}
+\usepackage[bottom]{footmisc}
+\usepackage{lastpage}
+
+\usepackage{enumitem}
+
+\usepackage{graphicx}
+
+\usepackage{makecell}
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+\fancyhead[L]{\leftmark}
+\fancyhead[R]{\shortstack[r]{Versione documento: 0.01 \\ Gruppo: T27}}
+
+\fancyfoot[C]{}
+\fancyfoot[R]{\thepage/\pageref{LastPage}}
+
+\renewcommand{\headrulewidth}{2pt}
+\renewcommand{\headruleskip}{3pt}
+\setlength{\headheight}{30pt}
+
+\renewcommand{\footrulewidth}{2pt}
+
+\setlist[itemize]{itemsep=0.25em,topsep=0pt}
+\setlist[enumerate]{itemsep=0.75em,topsep=0pt,align=left}
+
+%%%%%%%%%%%%%%%%%%%%
+%%%%  DOCUMENT  %%%%
+%%%%%%%%%%%%%%%%%%%%
+
+\title{Web Music Player}
+\author{Gruppo T27}
+
+\begin{document}
+
+\pagestyle{empty}
+
+\begin{center}
+
+    \vspace{2 cm}
+
+    \begin{tabular*}{\textwidth}{ c @{\extracolsep{\fill}} c }
+        \includegraphics[width=0.3\textwidth]{marchio_unitrento.pdf} & \shortstack{\Large{Dipartimento di Ingegneria} \\ \Large{e Scienza dell'Informazione}}
+    \end{tabular*}
+
+    \vspace{2 cm} 
+  
+    \LARGE{Ingegneria del software\\}
+  
+    \vspace{1.5 cm} 
+    \Large\textsc{Report finale\\} 
+    \Large\textsc{Versione: 0.01\\} 
+    \vspace{2 cm} 
+    \Huge\textsc{Web Music Player\\}
+    \Large{\it{Gruppo T27}}
+  
+    \vspace{2 cm} 
+  
+    \Large{Anno accademico 2022/2023}
+\end{center}
+
+\newpage
+\tableofcontents
+
+\pagestyle{fancy}
+
+\newpage
+\section{Scopo del documento}
+
+Questo documento consiste in un resoconto delle attività svolte. Verrà descritta brevemente l'organizzazione del lavoro, la divisione dei ruoli, un commento sul carico e divisione del lavoro, alcune criticità e un'autovalutazione.
+
+\section{Organizzazione del lavoro}
+
+Come gruppo abbiamo optato per una suddivisione flessibile del lavoro. Abbiamo cercato di suddividere equamente il carico di lavoro durante i tre mesi, cercando di non sovraccaricare nessuno. Il lavoro è stato suddiviso in comune accordo tra i membri del gruppo, anche in base agli impegni che un membro poteva avere in quel periodo.
+
+Poter discutere e lavorare sul progetto durante le lezioni ci ha permesso di discutere continuativamente del lavoro. Ci siamo incontrati più volte al di fuori dell'orario di lezione per portare avanti il lavoro e risolvere eventuali dubbi. per le comunicazioni online abbiamo optato per un gruppo Telegram.
+
+Il primo strumento che abbiamo utilizzato è stato \textbf{GitHub}, per l'hosting e l'organizzazione dei file del progetto. Come suggerito, abbiamo creato un'organizzazione per il gruppo, nella quale sono raggruppate le varie repository del progetto. Abbiamo mantenuto una repository per i documenti in LaTeX e i vari media necessari ad assemblare i documenti finali, una repository per i deliverable e due per l'implementazione: una per il backend del progetto ed una per il frontend. Per i documenti abbiamo sfruttato anche \textbf{Google Docs}, strumenti a noi più familiare e rapido da utilizzare.
+
+Per la creazione dei diagrammi abbiamo sfruttato \textbf{LucidChard} e \textbf{draw.io}. Il primo ci ha permesso una più semplice collaborazione nel lavoro parallelo sugli stessi diagrammi, in quanto i documenti sono salvati sul cloud. Il secondo, essendo open source, ci ha permesso di includerlo nella repository.
+
+\section{Ruoli e attività}
+
+Ogni membro del gruppo ha contribuito alla scrittura dei vari documenti. Nella tabella sono riportati i compiti più significativi che, secondo noi, sono stati svolti da ciascun membro ha svolto.
+
+
+\begin{tabular}{|p{4cm}|p{2.4cm}|p{8cm}|}
+    \hline
+    \textbf{Membro del team} & \textbf{Ruolo} & \textbf{Principali attività} \\ \hline
+    Federico Andreatta & Progettista & Realizzazione dei mock-up per il D1. Diagramma delle componenti nel D2. Estrazione e modello delle risorse nel D4. \\ \hline
+    Francesco Marchetto & Progettista & Descrizione delle classi nel terzo documenti. OCL nel terzo documento. \\ \hline
+    Silvanus Bordignon & \makecell[l]{Leader \\ Progettista \\ Sviluppatore} & Organizzazione del gruppo e consegna dei documenti. Diagramma delle componenti nel D2. Implementazione di backend e frontend nel D4. \\ \hline
+\end{tabular}
+
+\section{Carico e distribuzione del lavoro}
+
+Di seguito il carico di lavoro espresso in ore/persona per ciascun membro del gruppo. Sono escluse le ore di lezione frontale e di laboratorio, ma incluse le ore lasciate a lezione per lavorare al progetto in autonomia.
+
+\begin{tabular}{|l|c|c|c|c|c|c|}
+    \hline
+    & \textbf{D1} & \textbf{D2} & \textbf{D3} & \textbf{D4} & \textbf{D5} & \textbf{TOT} \\ \hline
+    Federico Andreatta & 25 & 18 & 15 & 14 & 0 & 72 \\ \hline
+    Francesco Marchetto & xx & xx & xx & xx & xx & xx \\ \hline
+    Silvanus Bordignon & 16 & 25.75 & 4.5 & 63.5 & 1.5 & 111.25 \\ \hline
+\end{tabular}
+
+\section{Criticità}
+
+Abbiamo spesso sottovalutato la quantità di lavoro da svolgere e non abbiamo avuto abbastanza urgenza nello svolgere i vari compiti assegnati. Le scadenze interne ci hanno aiutato a non peggiorare ulteriormente la situazione. Ci sono stati almeno due periodi nei quali c'è stato un aumento del carico di lavoro di altri corsi, dove abbiamo rallentato molto con il lavoro del progetto.
+
+\section{Autovalutazione}
+
+Nel complesso abbiamo lavorato tutti al progetto, e siamo soddisfatti del risultato. Abbiamo prodotto dei doocumenti ben strutturati e che raccontano la storia del nostro progetto, da ideazione a deployment. Il lavoro c'è stato, avremmo potuto spalmarlo meglio nel corso dei tre mesi. A seguito la nostra autovalutazione:
+
+\begin{tabular}{|l|c|}
+    \hline
+    & Voto \\ \hline
+    Federico Andreatta & xx \\ \hline
+    Francesco Marchetto & xx \\ \hline
+    Silvanus Bordignon & 30 \\ \hline
+\end{tabular}
+
+\end{document}

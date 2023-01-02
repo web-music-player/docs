@@ -62,6 +62,18 @@ jobs:
           set -xe
           file 'Documento di sviluppo.pdf' | grep -q 'PDF'
 
+      - name: Compila il documento D5 (LaTeX)
+        uses: xu-cheng/latex-action@v2
+        with:
+          root_file: 'Report finale.tex'
+          working_directory: source
+          args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode -outdir=..
+
+      - name: Verifica la presenza e correttezza del D5
+        run: |
+          set -xe
+          file 'Report finale.pdf' | grep -q 'PDF'
+
       - name: Carica i file aggiornati sulla repository
         run: |
           git config user.name 'Workflow Action'
